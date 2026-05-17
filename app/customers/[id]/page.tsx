@@ -686,11 +686,7 @@ function TransactionBubble({ txn }: { txn: Transaction }) {
         </div>
       )}
       <div className="txn-bubble-meta">
-        {time} &nbsp;·&nbsp;{" "}
-        <span style={{ color: txn.balanceAfter > 0 ? "var(--danger)" : "var(--success)" }}>
-          {balLabel}
-        </span>
-        &nbsp;·&nbsp; Empty at shop: {txn.totalEmptyAfter}
+        {time}
       </div>
     </div>
   );
