@@ -5,6 +5,12 @@ export const dynamic = "force-dynamic";
 
 export async function GET() {
   try {
+    // Auto-heal any legacy negative balances to 0 for absolute safety
+    await prisma.customer.updateMany({
+      where: { pendingBalance: { lt: 0 } },
+      data: { pendingBalance: 0 },
+    });
+
     // Agency stock
     let stock = await prisma.agencyStock.findFirst();
     if (!stock) {
@@ -20,6 +26,11 @@ export async function GET() {
     // Total empty across all customers (at their shops)
     const emptyAgg = await prisma.customer.aggregate({
       _sum: { totalEmptyLeft: true },
+    });
+
+    // Total delivered cylinders across all customers till date
+    const deliveredAgg = await prisma.customer.aggregate({
+      _sum: { totalDelivered: true },
     });
 
     // Recent payment history (all transactions with payment)
@@ -51,6 +62,7 @@ export async function GET() {
       totalEmpty: stock.totalEmpty,
       totalPending: balanceAgg._sum.pendingBalance ?? 0,
       totalEmptyAtCustomers: emptyAgg._sum.totalEmptyLeft ?? 0,
+      totalDelivered: deliveredAgg._sum.totalDelivered ?? 0,
       paymentHistory,
       deliveryHistory,
       emptyHistory,

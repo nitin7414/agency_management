@@ -40,7 +40,7 @@ export async function PATCH(
     
     // Parse pendingBalance if it was sent in the body
     if (body.pendingBalance !== undefined && body.pendingBalance !== null) {
-      body.pendingBalance = parseFloat(body.pendingBalance) || 0;
+      body.pendingBalance = Math.max(0, parseFloat(body.pendingBalance) || 0);
     }
 
     const updated = await prisma.customer.update({

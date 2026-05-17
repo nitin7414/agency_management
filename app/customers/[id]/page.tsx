@@ -72,7 +72,7 @@ export default function CustomerPage() {
       setEditMobile(customer.mobile);
       setEditEmail(customer.email || "");
       setEditAddress(customer.address || "");
-      setEditPendingBalance(customer.pendingBalance.toString());
+      setEditPendingBalance(Math.max(0, customer.pendingBalance).toString());
       setEditAadharUrl(customer.aadharUrl || "");
       setEditPanUrl(customer.panUrl || "");
       setEditFoodLicenseUrl(customer.foodLicenseUrl || "");

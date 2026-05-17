@@ -30,6 +30,7 @@ interface DashboardData {
   totalEmpty: number;
   totalPending: number;
   totalEmptyAtCustomers: number;
+  totalDelivered: number;
   paymentHistory: TxnWithCustomer[];
   deliveryHistory: TxnWithCustomer[];
   emptyHistory: TxnWithCustomer[];
@@ -181,7 +182,7 @@ export default function DashboardPage() {
             </svg>
           </div>
           <div className="stat-square-value">
-            {data ? data.totalEmpty : "—"}
+            {data ? data.totalEmptyAtCustomers : "—"}
           </div>
           <div className="stat-square-label">Total Empty</div>
         </button>
@@ -206,7 +207,7 @@ export default function DashboardPage() {
             </svg>
           </div>
           <div className="stat-square-value">
-            {data ? data.totalFilled : "—"}
+            {data ? data.totalDelivered : "—"}
           </div>
           <div className="stat-square-label">Total Filled</div>
         </button>

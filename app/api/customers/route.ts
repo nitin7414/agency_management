@@ -43,7 +43,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Name and mobile required" }, { status: 400 });
     }
 
-    const initialBalance = parseFloat(pendingBalance) || 0;
+    const initialBalance = Math.max(0, parseFloat(pendingBalance) || 0);
 
     const customer = await prisma.customer.create({
       data: { 

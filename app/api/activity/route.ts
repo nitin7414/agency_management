@@ -14,18 +14,54 @@ export async function GET(req: NextRequest) {
     });
 
     if (format === "csv") {
-      // Build CSV
+      // Build highly detailed, clean and professional CSV rows
       const rows = [
-        ["Date", "Time", "Type", "Description", "Customer", "Amount (₹)", "Cylinders"],
-        ...logs.map((l: any) => [
-          new Date(l.createdAt).toLocaleDateString("en-IN"),
-          new Date(l.createdAt).toLocaleTimeString("en-IN"),
-          l.type,
-          l.description,
-          l.customerName || "",
-          l.amount?.toFixed(2) || "",
-          l.cylinders?.toString() || "",
-        ]),
+        [
+          "Date",
+          "Time",
+          "Activity Category",
+          "Customer Name",
+          "Cylinders Delivered",
+          "Empties Collected",
+          "Amount Paid (₹)",
+          "Details"
+        ],
+        ...logs.map((l: any) => {
+          const dateObj = new Date(l.createdAt);
+          const day = String(dateObj.getDate()).padStart(2, "0");
+          const month = String(dateObj.getMonth() + 1).padStart(2, "0");
+          const year = dateObj.getFullYear();
+          const formattedDate = `${day}-${month}-${year}`;
+
+          const hours = String(dateObj.getHours()).padStart(2, "0");
+          const minutes = String(dateObj.getMinutes()).padStart(2, "0");
+          const formattedTime = `${hours}:${minutes}`;
+
+          let category = l.type.replace(/_/g, " ");
+          // Proper Title Case format
+          category = category.charAt(0).toUpperCase() + category.slice(1).toLowerCase();
+          if (l.type === "CUSTOMER_ADDED") category = "Customer Registered";
+          if (l.type === "PAYMENT_RECEIVED") category = "Payment Received";
+          if (l.type === "CYLINDERS_DELIVERED") category = "Cylinder Delivered";
+          if (l.type === "EMPTIES_COLLECTED") category = "Empties Collected";
+          if (l.type === "TASK_ADDED") category = "Note Created";
+          if (l.type === "TASK_EDITED") category = "Note Updated";
+
+          const cylindersDelivered = l.type === "CYLINDERS_DELIVERED" ? (l.cylinders || "") : "";
+          const emptiesCollected = l.type === "EMPTIES_COLLECTED" ? (l.cylinders || "") : "";
+          const amountPaid = l.amount ? l.amount.toFixed(2) : "";
+
+          return [
+            formattedDate,
+            formattedTime,
+            category,
+            l.customerName || "—",
+            cylindersDelivered,
+            emptiesCollected,
+            amountPaid,
+            l.description
+          ];
+        }),
       ];
       const csv = rows.map((r) => r.map((c: any) => `"${c}"`).join(",")).join("\n");
 

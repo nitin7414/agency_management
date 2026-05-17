@@ -48,7 +48,7 @@ export async function POST(
     // Since no per-cylinder rate, balance only reduces on payment
     // But we need to track outstanding: balance grows by amount owed on delivery
     // Since payment is manual installment — balance = previous balance - payment made
-    const newBalance = customer.pendingBalance - payment;
+    const newBalance = Math.max(0, customer.pendingBalance - payment);
 
     // ── Create transaction ───────────────────────────────────
     const txn = await prisma.transaction.create({
