@@ -14,7 +14,7 @@ export async function GET(
       where: { id },
       include: {
         transactions: {
-          orderBy: { createdAt: "asc" },
+          orderBy: { createdAt: "desc" },
         },
       },
     });

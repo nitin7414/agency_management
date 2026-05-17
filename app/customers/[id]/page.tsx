@@ -634,11 +634,19 @@ export default function CustomerPage() {
 // ── Transaction Bubble ─────────────────────────────────────────
 function TransactionBubble({ txn }: { txn: Transaction }) {
   const time = format(new Date(txn.createdAt), "hh:mm a");
-  const lines: { icon: string; text: React.ReactNode }[] = [];
+  const lines: { icon: React.ReactNode; text: React.ReactNode }[] = [];
 
   if (txn.cylindersDelivered) {
     lines.push({
-      icon: "🟢",
+      icon: (
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--success)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+          <path d="M6 9h12v11a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V9z" fill="var(--success)" fillOpacity="0.1" />
+          <path d="M9 5a3 3 0 0 1 6 0" />
+          <line x1="6" y1="9" x2="18" y2="9" />
+          <line x1="9" y1="5" x2="9" y2="9" />
+          <line x1="15" y1="5" x2="15" y2="9" />
+        </svg>
+      ),
       text: (
         <>
           <strong>{txn.cylindersDelivered}</strong> cylinder(s) delivered
@@ -648,7 +656,15 @@ function TransactionBubble({ txn }: { txn: Transaction }) {
   }
   if (txn.emptiesCollected) {
     lines.push({
-      icon: "⬜",
+      icon: (
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--danger)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+          <path d="M6 9h12v11a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V9z" />
+          <path d="M9 5a3 3 0 0 1 6 0" />
+          <line x1="6" y1="9" x2="18" y2="9" />
+          <line x1="9" y1="5" x2="9" y2="9" />
+          <line x1="15" y1="5" x2="15" y2="9" />
+        </svg>
+      ),
       text: (
         <>
           <strong>{txn.emptiesCollected}</strong> empty cylinder(s) collected
@@ -658,7 +674,13 @@ function TransactionBubble({ txn }: { txn: Transaction }) {
   }
   if (txn.paymentAmount) {
     lines.push({
-      icon: "₹",
+      icon: (
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--warning)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+          <rect x="2" y="4" width="20" height="16" rx="2" fill="var(--warning)" fillOpacity="0.1" />
+          <line x1="12" y1="4" x2="12" y2="20" />
+          <line x1="2" y1="10" x2="22" y2="10" />
+        </svg>
+      ),
       text: (
         <>
           Payment of <strong>₹{txn.paymentAmount.toFixed(2)}</strong> received
@@ -667,16 +689,11 @@ function TransactionBubble({ txn }: { txn: Transaction }) {
     });
   }
 
-  const balLabel =
-    txn.balanceAfter > 0
-      ? `Pending: ₹${txn.balanceAfter.toFixed(2)}`
-      : "Balance Clear";
-
   return (
     <div className="txn-bubble">
       {lines.map((l, i) => (
-        <div key={i} className="txn-bubble-row">
-          <span className="txn-bubble-icon">{l.icon}</span>
+        <div key={i} className="txn-bubble-row" style={{ display: "flex", alignItems: "center", gap: 10 }}>
+          <span className="txn-bubble-icon" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center" }}>{l.icon}</span>
           <span className="txn-bubble-text">{l.text}</span>
         </div>
       ))}
