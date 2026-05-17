@@ -1,26 +1,41 @@
 {
-  "name": "shri_shyam",
-  "version": "0.1.0",
+  "name": "shri-shyam-gas-agency",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "next lint",
+    "db:push": "prisma db push",
+    "db:generate": "prisma generate",
+    "db:studio": "prisma studio",
+    "db:seed": "ts-node prisma/seed.ts"
   },
   "dependencies": {
+    "@prisma/client": "^5.22.0",
+    "@uploadthing/react": "^7.3.3",
+    "uploadthing": "^7.7.4",
+    "bcryptjs": "^2.4.3",
+    "iron-session": "^8.0.3",
     "next": "16.2.6",
-    "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
+    "react-hot-toast": "^2.4.1",
+    "date-fns": "^3.6.0",
+    "papaparse": "^5.4.1"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "16.2.6",
-    "tailwindcss": "^4",
-    "typescript": "^5"
+    "@types/bcryptjs": "^2.4.6",
+    "@types/node": "^20.14.2",
+    "@types/papaparse": "^5.3.14",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "prisma": "^5.22.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
   }
 }
