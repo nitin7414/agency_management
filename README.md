@@ -1,36 +1,179 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Shri Shyam Gas Agency — Management System
 
-## Getting Started
+A professional LPG agency management web app built with **Next.js 14**, **Prisma**, **Neon (PostgreSQL)**, and **UploadThing**.
 
-First, run the development server:
+---
+
+## Features
+
+- 📊 Dashboard with global filled/empty cylinder counts and due payments
+- 👥 Customer management with document uploads (Aadhar, PAN, Food License, GST)
+- 💬 Paytm-style transaction feed per customer
+- 📦 Auto-calculated cylinder balance and pending payment tracking
+- 📝 Google Notes-style task board
+- 📋 Recent activity log with CSV export
+- 🌙 Dark/light mode toggle
+- 📱 Mobile-first responsive design with footer navigation
+- 🖥️ Desktop sidebar layout
+
+---
+
+## Tech Stack
+
+| Layer        | Technology               |
+|--------------|--------------------------|
+| Framework    | Next.js 14 (App Router)  |
+| Database     | Neon (Serverless Postgres)|
+| ORM          | Prisma 5                 |
+| File Uploads | UploadThing              |
+| Auth         | iron-session             |
+| UI           | Custom CSS (no component lib) |
+
+---
+
+## Setup Instructions
+
+### 1. Install dependencies
+
+```bash
+npm install
+```
+
+### 2. Set up Neon database
+
+1. Go to [neon.tech](https://neon.tech) and create a free account
+2. Create a new project
+3. Copy the **Connection String** (postgresql://...)
+
+### 3. Set up UploadThing
+
+1. Go to [uploadthing.com](https://uploadthing.com) and create an account
+2. Create a new app
+3. Copy your **Secret Key** and **App ID**
+
+### 4. Configure environment
+
+```bash
+cp .env.example .env.local
+```
+
+Edit `.env.local` and fill in:
+```env
+DATABASE_URL="postgresql://..."
+UPLOADTHING_SECRET="sk_live_..."
+UPLOADTHING_APP_ID="..."
+SESSION_SECRET="any-random-32-char-string-here"
+```
+
+### 5. Push database schema
+
+```bash
+npm run db:generate
+npm run db:push
+```
+
+### 6. Seed the admin account
+
+```bash
+npm run db:seed
+```
+
+Default credentials:
+- **Email:** admin@ssga.com
+- **Password:** admin123
+- ⚠️ Change this password after first login in Settings!
+
+### 7. Run the app
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## How to Use
 
-## Learn More
+### Adding Customers
+1. On the Home screen, tap the **+** button (bottom right)
+2. Fill in Name and Mobile (required)
+3. Optionally upload documents
+4. Tap **Add Customer**
 
-To learn more about Next.js, take a look at the following resources:
+### Recording a Transaction
+1. Tap a customer name from the list
+2. Tap **New Transaction** at the bottom
+3. Fill in any combination of:
+   - Cylinders Delivered
+   - Empty Cylinders Collected
+   - Payment Received (₹)
+4. Tap **Save Transaction**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Viewing History
+- Tap the **₹ Due** button to see all payment history
+- Tap the **Empty** button to see all empty cylinder collections
+- Tap the **Filled** button to see all deliveries
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Exporting Data
+- Go to the **Activity** tab
+- Tap **Export CSV** to download the full log
 
-## Deploy on Vercel
+### Updating Agency Stock
+- Go to **Settings**
+- Under "Agency Cylinder Stock", enter current counts
+- Tap **Update Stock**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Folder Structure
+
+```
+shri-shyam-gas/
+├── app/
+│   ├── api/
+│   │   ├── auth/login/         POST login
+│   │   ├── auth/logout/        POST logout
+│   │   ├── customers/          GET list, POST create
+│   │   ├── customers/[id]/     GET detail, PATCH update
+│   │   ├── customers/[id]/transactions/  POST new transaction
+│   │   ├── dashboard/          GET stats
+│   │   ├── tasks/              GET list, POST create
+│   │   ├── tasks/[id]/         PATCH update, DELETE
+│   │   ├── activity/           GET logs, ?format=csv
+│   │   ├── stock/              GET/PATCH agency stock
+│   │   ├── settings/           GET/PATCH admin profile
+│   │   └── uploadthing/        UploadThing handler
+│   ├── dashboard/page.tsx      Home screen
+│   ├── customers/[id]/page.tsx Transaction feed
+│   ├── tasks/page.tsx          Notes
+│   ├── activity/page.tsx       Recent activity
+│   ├── settings/page.tsx       Settings
+│   ├── login/page.tsx          Login
+│   ├── layout.tsx              Root layout
+│   └── globals.css             All styles
+├── components/
+│   ├── AppShell.tsx            Sidebar + footer nav
+│   ├── AddCustomerModal.tsx    Add customer form
+│   ├── HistoryPopup.tsx        Scrollable history list
+│   └── ThemeProvider.tsx       Dark/light mode
+├── lib/
+│   ├── prisma.ts               DB client
+│   ├── session.ts              Auth session
+│   └── uploadthing.ts          File upload config
+├── prisma/
+│   ├── schema.prisma           DB schema
+│   └── seed.ts                 Initial data
+└── README.md
+```
+
+---
+
+## Deployment (Vercel)
+
+1. Push code to GitHub
+2. Import project on [vercel.com](https://vercel.com)
+3. Add environment variables in Vercel project settings
+4. Deploy!
+
+Neon and UploadThing both work seamlessly on Vercel serverless functions.
