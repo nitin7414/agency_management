@@ -6,7 +6,7 @@ export const dynamic = "force-dynamic";
 // GET /api/customers — list all customers (with search)
 export async function GET(req: NextRequest) {
   try {
-    const { searchParams } = new URL(req.url);
+    const { searchParams } = req.nextUrl;
     const q = searchParams.get("q") || "";
 
     const customers = await prisma.customer.findMany({

@@ -5,7 +5,7 @@ export const dynamic = "force-dynamic";
 
 export async function GET(req: NextRequest) {
   try {
-    const { searchParams } = new URL(req.url);
+    const { searchParams } = req.nextUrl;
     const format = searchParams.get("format");
 
     const logs = await prisma.activityLog.findMany({
