@@ -49,8 +49,17 @@ export default function CustomerPage() {
   const [delivered, setDelivered] = useState("");
   const [empties, setEmpties] = useState("");
   const [payment, setPayment] = useState("");
+  const [txnPendingAmount, setTxnPendingAmount] = useState("");
   const [note, setNote] = useState("");
   const [saving, setSaving] = useState(false);
+
+  const handlePaymentChange = (val: string) => {
+    setPayment(val);
+    if (customer) {
+      const p = parseFloat(val) || 0;
+      setTxnPendingAmount(Math.max(0, customer.pendingBalance - p).toString());
+    }
+  };
 
   // Edit customer form state
   const [editName, setEditName] = useState("");
@@ -104,8 +113,9 @@ export default function CustomerPage() {
     const d = parseInt(delivered) || 0;
     const e = parseInt(empties) || 0;
     const p = parseFloat(payment) || 0;
+    const pa = txnPendingAmount !== "" ? parseFloat(txnPendingAmount) : undefined;
 
-    if (!d && !e && !p) {
+    if (!d && !e && !p && pa === undefined) {
       toast.error("Fill at least one field");
       return;
     }
@@ -119,12 +129,12 @@ export default function CustomerPage() {
           cylindersDelivered: d || undefined,
           emptiesCollected: e || undefined,
           paymentAmount: p || undefined,
-          note: note.trim() || undefined,
+          pendingAmount: pa,
         }),
       });
       if (!res.ok) throw new Error("Failed to save");
       toast.success("Transaction saved");
-      setDelivered(""); setEmpties(""); setPayment(""); setNote("");
+      setDelivered(""); setEmpties(""); setPayment(""); setTxnPendingAmount(""); setNote("");
       setShowNewTxn(false);
       fetchCustomer();
     } catch {
@@ -361,7 +371,10 @@ export default function CustomerPage() {
       <div className="new-txn-footer">
         <button
           className="btn btn-primary btn-full"
-          onClick={() => setShowNewTxn(true)}
+          onClick={() => {
+            setTxnPendingAmount(customer ? customer.pendingBalance.toString() : "");
+            setShowNewTxn(true);
+          }}
           style={{ gap: 8 }}
         >
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -382,7 +395,7 @@ export default function CustomerPage() {
               Fill any combination. All fields are optional.
             </p>
 
-            <div className="form-group">
+             <div className="form-group">
               <label className="form-label">Cylinders Delivered</label>
               <input
                 className="form-input"
@@ -415,18 +428,20 @@ export default function CustomerPage() {
                 step="0.01"
                 placeholder="0.00"
                 value={payment}
-                onChange={(e) => setPayment(e.target.value)}
+                onChange={(e) => handlePaymentChange(e.target.value)}
               />
             </div>
 
             <div className="form-group">
-              <label className="form-label">Note (optional)</label>
+              <label className="form-label">Pending Amount (₹)</label>
               <input
                 className="form-input"
-                type="text"
-                placeholder="Any remark…"
-                value={note}
-                onChange={(e) => setNote(e.target.value)}
+                type="number"
+                min="0"
+                step="0.01"
+                placeholder="0.00"
+                value={txnPendingAmount}
+                onChange={(e) => setTxnPendingAmount(e.target.value)}
               />
             </div>
 

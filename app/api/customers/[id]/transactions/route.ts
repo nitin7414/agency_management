@@ -11,13 +11,14 @@ export async function POST(
   try {
     const { id } = await params;
     const body = await req.json();
-    const { cylindersDelivered, emptiesCollected, paymentAmount, note } = body;
+    const { cylindersDelivered, emptiesCollected, paymentAmount, pendingAmount, note } = body;
 
     // Validate at least one field
     const hasData =
       (cylindersDelivered && cylindersDelivered > 0) ||
       (emptiesCollected && emptiesCollected > 0) ||
-      (paymentAmount && paymentAmount > 0);
+      (paymentAmount && paymentAmount > 0) ||
+      (pendingAmount !== undefined && pendingAmount !== null && pendingAmount !== "");
 
     if (!hasData) {
       return NextResponse.json(
@@ -44,11 +45,10 @@ export async function POST(
     const newTotalEmpty = customer.totalEmptyLeft + delivered - collected;
     const newTotalDelivered = customer.totalDelivered + delivered;
 
-    // New pending balance: previous + (delivered * 0 as no per-cyl rate) - payment
-    // Since no per-cylinder rate, balance only reduces on payment
-    // But we need to track outstanding: balance grows by amount owed on delivery
-    // Since payment is manual installment — balance = previous balance - payment made
-    const newBalance = Math.max(0, customer.pendingBalance - payment);
+    // New pending balance: previous - payment (or manual override pendingAmount)
+    const newBalance = (pendingAmount !== undefined && pendingAmount !== null && pendingAmount !== "")
+      ? Math.max(0, parseFloat(pendingAmount) || 0)
+      : Math.max(0, customer.pendingBalance - payment);
 
     // ── Create transaction ───────────────────────────────────
     const txn = await prisma.transaction.create({
