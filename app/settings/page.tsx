@@ -30,6 +30,10 @@ export default function SettingsPage() {
   const [stockEmpty, setStockEmpty] = useState("");
   const [stockSaving, setStockSaving] = useState(false);
 
+  // Backup & Restore fields
+  const [exporting, setExporting] = useState(false);
+  const [restoring, setRestoring] = useState(false);
+
   useEffect(() => {
     fetch("/api/settings")
       .then((r) => r.json())
@@ -99,6 +103,76 @@ export default function SettingsPage() {
   async function handleLogout() {
     await fetch("/api/auth/logout", { method: "POST" });
     router.push("/login");
+  }
+
+  async function handleExportBackup() {
+    setExporting(true);
+    try {
+      const res = await fetch("/api/backup");
+      if (!res.ok) throw new Error("Export failed");
+      
+      const blob = await res.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      const contentDisposition = res.headers.get("content-disposition");
+      let fileName = `ssga_database_backup_${new Date().toISOString().split("T")[0]}.json`;
+      if (contentDisposition) {
+        const matches = /filename="([^"]+)"/.exec(contentDisposition);
+        if (matches && matches[1]) fileName = matches[1];
+      }
+      a.download = fileName;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      window.URL.revokeObjectURL(url);
+      toast.success("Database backup downloaded!");
+    } catch (err) {
+      console.error(err);
+      toast.error("Could not export backup");
+    } finally {
+      setExporting(false);
+    }
+  }
+
+  async function handleImportBackup(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const confirmRestore = window.confirm(
+      "WARNING: Restoring a backup will COMPLETELY erase and replace all current customer records, transactions, empty cylinder counts, and notes. This cannot be undone!\n\nAre you absolutely sure you want to proceed?"
+    );
+    if (!confirmRestore) {
+      e.target.value = "";
+      return;
+    }
+
+    setRestoring(true);
+    const loadingToast = toast.loading("Restoring backup...");
+    try {
+      const text = await file.text();
+      const payload = JSON.parse(text);
+
+      const res = await fetch("/api/backup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      const result = await res.json();
+      if (!res.ok) throw new Error(result.error || "Restoration failed");
+
+      toast.success("Database successfully restored!", { id: loadingToast });
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
+    } catch (err: any) {
+      console.error(err);
+      toast.error(err?.message || "Could not restore backup", { id: loadingToast });
+    } finally {
+      setRestoring(false);
+      e.target.value = "";
+    }
   }
 
   return (
@@ -175,6 +249,42 @@ export default function SettingsPage() {
             />
             <span className="toggle-slider" />
           </label>
+        </div>
+      </div>
+
+      {/* ── Data Safety & Backup ─────────────────────────────── */}
+      <div className="settings-section">
+        <div className="settings-section-title">Data Safety & Backup</div>
+        <div style={{ padding: "14px 16px" }}>
+          <p style={{ fontSize: 13, color: "var(--text-muted)", marginBottom: 12 }}>
+            Protect your valuable agency records. Export a secure backup file of your entire database or restore from an existing backup file.
+          </p>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 12 }}>
+            <button
+              className="btn btn-primary"
+              onClick={handleExportBackup}
+              disabled={exporting}
+              style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 6 }}
+            >
+              📥 {exporting ? "Exporting..." : "Backup Data"}
+            </button>
+            <label
+              className="btn btn-outline"
+              style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 6, cursor: "pointer", margin: 0, textAlign: "center" }}
+            >
+              📤 {restoring ? "Restoring..." : "Restore Data"}
+              <input
+                type="file"
+                accept=".json"
+                onChange={handleImportBackup}
+                disabled={restoring}
+                style={{ display: "none" }}
+              />
+            </label>
+          </div>
+          <p style={{ fontSize: 11, color: "var(--danger)", margin: 0 }}>
+            ⚠️ Restoring a backup will completely replace all existing records. Make sure the backup file is valid.
+          </p>
         </div>
       </div>
 

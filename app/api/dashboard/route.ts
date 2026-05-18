@@ -60,6 +60,15 @@ export async function GET() {
       },
     });
 
+    // Find the last database backup activity log
+    const lastBackupLog = await prisma.activityLog.findFirst({
+      where: {
+        description: { contains: "backup downloaded" }
+      },
+      orderBy: { createdAt: "desc" },
+      select: { createdAt: true }
+    });
+
     return NextResponse.json({
       totalFilled: stock.totalFilled,
       totalEmpty: stock.totalEmpty,
@@ -69,6 +78,7 @@ export async function GET() {
       paymentHistory,
       deliveryHistory,
       customersWithEmpties,
+      lastBackupDate: lastBackupLog?.createdAt || null,
     });
   } catch (err) {
     console.error(err);

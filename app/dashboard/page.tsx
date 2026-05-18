@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import AppShell from "@/components/AppShell";
 import AddCustomerModal from "@/components/AddCustomerModal";
 import { format } from "date-fns";
+import toast from "react-hot-toast";
 
 interface Customer {
   id: string;
@@ -40,6 +41,7 @@ interface DashboardData {
   paymentHistory: TxnWithCustomer[];
   deliveryHistory: TxnWithCustomer[];
   customersWithEmpties: CustomerWithEmpties[];
+  lastBackupDate: string | null;
 }
 
 export default function DashboardPage() {
@@ -50,6 +52,43 @@ export default function DashboardPage() {
   const [showAddCustomer, setShowAddCustomer] = useState(false);
   const [showQRModal, setShowQRModal] = useState(false);
   const [activeTab, setActiveTab] = useState<"customers" | "due" | "empty" | "filled">("customers");
+
+  // Backup notification states
+  const [exporting, setExporting] = useState(false);
+  const [showBackupBanner, setShowBackupBanner] = useState(false);
+
+  async function handleExportBackup() {
+    setExporting(true);
+    try {
+      const res = await fetch("/api/backup");
+      if (!res.ok) throw new Error("Export failed");
+      
+      const blob = await res.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      const contentDisposition = res.headers.get("content-disposition");
+      let fileName = `ssga_database_backup_${new Date().toISOString().split("T")[0]}.json`;
+      if (contentDisposition) {
+        const matches = /filename="([^"]+)"/.exec(contentDisposition);
+        if (matches && matches[1]) fileName = matches[1];
+      }
+      a.download = fileName;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      window.URL.revokeObjectURL(url);
+      
+      setShowBackupBanner(false);
+      toast.success("Database backup downloaded!");
+      fetchDashboard();
+    } catch (err) {
+      console.error(err);
+      toast.error("Could not export backup");
+    } finally {
+      setExporting(false);
+    }
+  }
 
   const fetchDashboard = useCallback(async () => {
     const res = await fetch("/api/dashboard");
@@ -65,6 +104,34 @@ export default function DashboardPage() {
     fetchDashboard();
     fetchCustomers();
   }, [fetchDashboard, fetchCustomers]);
+
+  useEffect(() => {
+    if (data) {
+      const lastBackupStr = data.lastBackupDate;
+      const dismissedAtStr = localStorage.getItem("ssga_backup_banner_dismissed_at");
+      
+      let needsBackup = false;
+      if (!lastBackupStr) {
+        needsBackup = true;
+      } else {
+        const lastBackup = new Date(lastBackupStr);
+        const oneWeekAgo = new Date();
+        oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+        needsBackup = lastBackup < oneWeekAgo;
+      }
+
+      if (needsBackup && dismissedAtStr) {
+        const dismissedAt = new Date(dismissedAtStr);
+        const oneDayAgo = new Date();
+        oneDayAgo.setDate(oneDayAgo.getDate() - 1);
+        if (dismissedAt > oneDayAgo) {
+          needsBackup = false; // Dismissed within 24 hours, don't show it yet
+        }
+      }
+
+      setShowBackupBanner(needsBackup);
+    }
+  }, [data]);
 
   useEffect(() => {
     const timer = setTimeout(() => fetchCustomers(search), 250);
@@ -144,6 +211,84 @@ export default function DashboardPage() {
           </button>
         </div>
       </div>
+
+      {/* ── Backup Notification Banner ──────────────────────── */}
+      {showBackupBanner && (
+        <div
+          style={{
+            background: "var(--navy-pale)",
+            border: "1px solid var(--navy-border)",
+            borderRadius: "var(--radius)",
+            padding: "14px 18px",
+            marginBottom: 16,
+            boxShadow: "var(--card-shadow)",
+            display: "flex",
+            flexDirection: "column",
+            gap: 12,
+            position: "relative",
+            animation: "fadeIn 0.2s ease"
+          }}
+        >
+          {/* Close button in top-right */}
+          <button
+            onClick={() => {
+              localStorage.setItem("ssga_backup_banner_dismissed_at", new Date().toISOString());
+              setShowBackupBanner(false);
+            }}
+            style={{
+              position: "absolute",
+              top: 10,
+              right: 12,
+              color: "var(--text-muted)",
+              fontSize: 18,
+              lineHeight: 1,
+              padding: 4,
+              cursor: "pointer",
+              background: "none",
+              border: "none"
+            }}
+            title="Dismiss reminder"
+          >
+            &times;
+          </button>
+          
+          <div style={{ display: "flex", gap: 10, alignItems: "flex-start", paddingRight: 16 }}>
+            <span style={{ fontSize: 20, marginTop: 1 }}>⚠️</span>
+            <div>
+              <div style={{ fontWeight: 700, color: "var(--navy)", fontSize: "14px" }}>
+                Database Backup Reminder
+              </div>
+              <p style={{ fontSize: "12.5px", color: "var(--text)", margin: "3px 0 0 0", lineHeight: "1.4" }}>
+                {data?.lastBackupDate
+                  ? `Your last database backup was created on ${format(new Date(data.lastBackupDate), "dd MMM yyyy")}. Backup your records weekly to ensure complete data safety.`
+                  : "You have never created a backup copy of your database. Create a local backup now to protect your valuable business records from any accidental loss."
+                }
+              </p>
+            </div>
+          </div>
+          
+          <div style={{ display: "flex", gap: 8 }}>
+            <button
+              onClick={handleExportBackup}
+              disabled={exporting}
+              className="btn btn-primary btn-sm"
+              style={{ padding: "6px 12px", fontSize: "12px", background: "var(--navy)" }}
+            >
+              📥 {exporting ? "Downloading..." : "Backup Data Now"}
+            </button>
+            <button
+              onClick={() => {
+                localStorage.setItem("ssga_backup_banner_dismissed_at", new Date().toISOString());
+                setShowBackupBanner(false);
+              }}
+              className="btn btn-outline btn-sm"
+              style={{ padding: "6px 12px", fontSize: "12px", border: "1px solid var(--navy-border)", color: "var(--text-muted)" }}
+            >
+              Remind Tomorrow
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* ── Three stat squares ─────────────────────────────── */}
       <div className="stat-squares" style={{ marginTop: 8 }}>
