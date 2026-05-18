@@ -70,138 +70,139 @@ export default function TasksPage() {
     setContent(t.content);
   };
 
-  return (
-    <AppShell>
-      {isEditingTask !== null ? (
-        // Inline Notes Editor screen (Dedicated note-taking page)
-        <div className="card" style={{ padding: "24px", display: "flex", flexDirection: "column", gap: 16 }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", borderBottom: "1px solid var(--navy-border)", paddingBottom: 16, marginBottom: 8 }}>
+  if (isEditingTask !== null) {
+    return (
+      <div style={{ display: "flex", flexDirection: "column", height: "100vh", background: "var(--bg)" }}>
+        {/* ── Header (Paytm style like Transactions) ──────────────────── */}
+        <div className="txn-page-header" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", position: "relative" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
             <button
+              className="txn-back-btn"
               onClick={() => { setIsEditingTask(null); setContent(""); }}
-              style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 13, fontWeight: 600, color: "var(--navy)", background: "none", border: "none", cursor: "pointer" }}
+              aria-label="Go back"
+              style={{ padding: 0 }}
             >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <line x1="19" y1="12" x2="5" y2="12" />
-                <polyline points="12 19 5 12 12 5" />
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <polyline points="15 18 9 12 15 6" />
               </svg>
-              Back to Notes
             </button>
-            <h2 style={{ margin: 0, fontSize: 16, fontWeight: 700, color: "var(--navy)" }}>
-              {isEditingTask === "new" ? "New Note" : "Edit Note"}
-            </h2>
+            <div>
+              <div className="txn-customer-name" style={{ fontSize: "16px" }}>
+                {isEditingTask === "new" ? "New Note" : "Edit Note"}
+              </div>
+            </div>
           </div>
+        </div>
 
+        {/* ── Notepad/Note Body (Full height minus header/footer) ────── */}
+        <div style={{ flex: 1, padding: "16px", display: "flex", flexDirection: "column" }}>
           <textarea
             className="form-input"
-            rows={12}
             placeholder="Write down something here... (e.g. daily tasks, cylinder tallies, customer requests)"
             value={content}
             onChange={(e) => setContent(e.target.value)}
             autoFocus
             style={{
+              flex: 1,
               width: "100%",
-              padding: "14px",
+              padding: "16px",
               borderRadius: "var(--radius)",
               border: "1px solid var(--navy-border)",
-              fontSize: "14px",
+              fontSize: "15px",
               lineHeight: "1.6",
-              resize: "vertical",
+              resize: "none",
               background: "var(--white)",
-              color: "var(--text)"
+              color: "var(--text)",
+              boxShadow: "var(--card-shadow)",
+              outline: "none"
             }}
           />
+        </div>
 
-          <div style={{ display: "flex", gap: 12, justifyContent: "flex-end", marginTop: 8 }}>
-            {isEditingTask !== "new" && (
-              <button
-                type="button"
-                className="btn btn-danger"
-                style={{ padding: "8px 16px", minWidth: 100 }}
-                onClick={() => {
-                  handleDelete(isEditingTask.id);
-                  setIsEditingTask(null);
-                  setContent("");
-                }}
-              >
-                Delete
-              </button>
-            )}
+        {/* ── Transaction-style Footer Button Tray ────────────────────── */}
+        <div className="new-txn-footer" style={{ display: "flex", gap: 10 }}>
+          {isEditingTask !== "new" && (
             <button
               type="button"
-              className="btn btn-outline"
-              style={{ padding: "8px 16px", minWidth: 100 }}
+              className="btn btn-danger"
+              style={{ flex: 1 }}
               onClick={() => {
+                handleDelete(isEditingTask.id);
                 setIsEditingTask(null);
                 setContent("");
               }}
             >
-              Cancel
+              Delete
             </button>
-            <button
-              type="button"
-              className="btn btn-primary"
-              style={{ padding: "8px 24px", minWidth: 120 }}
-              onClick={handleSave}
-              disabled={saving || !content.trim()}
-            >
-              {saving ? "Saving..." : isEditingTask === "new" ? "Save Note" : "Update Note"}
-            </button>
+          )}
+          <button
+            type="button"
+            className="btn btn-outline"
+            style={{ flex: 1 }}
+            onClick={() => {
+              setIsEditingTask(null);
+              setContent("");
+            }}
+          >
+            Cancel
+          </button>
+          <button
+            type="button"
+            className="btn btn-primary"
+            style={{ flex: 2 }}
+            onClick={handleSave}
+            disabled={saving || !content.trim()}
+          >
+            {saving ? "Saving…" : isEditingTask === "new" ? "Save Note" : "Update Note"}
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <AppShell>
+      {/* Standard Notes Grid View */}
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
+        <div className="page-title" style={{ margin: 0 }}>Notes Board</div>
+      </div>
+
+      {tasks.length === 0 ? (
+        <div className="empty-state" style={{ background: "var(--white)", border: "1px solid var(--navy-border)", borderRadius: "var(--radius)", padding: "48px 24px" }}>
+          <div className="empty-state-icon">📝</div>
+          <div className="empty-state-text" style={{ fontSize: 14 }}>
+            No notes yet. Click the "+" button in bottom right to write down something!
           </div>
         </div>
       ) : (
-        // Standard Notes Grid View
-        <>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
-            <div className="page-title" style={{ margin: 0 }}>Notes Board</div>
-            <button
-              onClick={() => { setIsEditingTask("new"); setContent(""); }}
-              className="btn btn-primary btn-sm"
-              style={{ display: "flex", alignItems: "center", gap: 6 }}
+        <div className="tasks-grid">
+          {tasks.map((t) => (
+            <div
+              key={t.id}
+              className="task-card"
+              onClick={() => openEdit(t)}
+              style={{ cursor: "pointer" }}
             >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round">
-                <line x1="12" y1="5" x2="12" y2="19" />
-                <line x1="5" y1="12" x2="19" y2="12" />
-              </svg>
-              New Note
-            </button>
-          </div>
-
-          {tasks.length === 0 ? (
-            <div className="empty-state" style={{ background: "var(--white)", border: "1px solid var(--navy-border)", borderRadius: "var(--radius)", padding: "48px 24px" }}>
-              <div className="empty-state-icon">📝</div>
-              <div className="empty-state-text" style={{ fontSize: 14 }}>No notes yet. Click "New Note" to write down something!</div>
+              <div style={{ whiteSpace: "pre-wrap", fontSize: "14px", color: "var(--text)" }}>{t.content}</div>
+              <div className="task-card-date">
+                {format(new Date(t.updatedAt), "dd MMM yyyy, hh:mm a")}
+              </div>
             </div>
-          ) : (
-            <div className="tasks-grid">
-              {tasks.map((t) => (
-                <div
-                  key={t.id}
-                  className="task-card"
-                  onClick={() => openEdit(t)}
-                  style={{ cursor: "pointer" }}
-                >
-                  <div style={{ whiteSpace: "pre-wrap", fontSize: "14px", color: "var(--text)" }}>{t.content}</div>
-                  <div className="task-card-date">
-                    {format(new Date(t.updatedAt), "dd MMM yyyy, hh:mm a")}
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-
-          {/* Plus icon FAB also routes to full-page New Note view */}
-          <button
-            className="fab"
-            onClick={() => { setIsEditingTask("new"); setContent(""); }}
-            title="Add Note"
-          >
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <line x1="12" y1="5" x2="12" y2="19" />
-              <line x1="5" y1="12" x2="19" y2="12" />
-            </svg>
-          </button>
-        </>
+          ))}
+        </div>
       )}
+
+      {/* Plus icon FAB routes to full-page New Note view */}
+      <button
+        className="fab"
+        onClick={() => { setIsEditingTask("new"); setContent(""); }}
+        title="Add Note"
+      >
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+          <line x1="12" y1="5" x2="12" y2="19" />
+          <line x1="5" y1="12" x2="19" y2="12" />
+        </svg>
+      </button>
     </AppShell>
   );
 }

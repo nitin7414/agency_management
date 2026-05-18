@@ -25,6 +25,12 @@ interface TxnWithCustomer {
   customer: { name: string };
 }
 
+interface CustomerWithEmpties {
+  id: string;
+  name: string;
+  totalEmptyLeft: number;
+}
+
 interface DashboardData {
   totalFilled: number;
   totalEmpty: number;
@@ -33,7 +39,7 @@ interface DashboardData {
   totalDelivered: number;
   paymentHistory: TxnWithCustomer[];
   deliveryHistory: TxnWithCustomer[];
-  emptyHistory: TxnWithCustomer[];
+  customersWithEmpties: CustomerWithEmpties[];
 }
 
 export default function DashboardPage() {
@@ -330,9 +336,6 @@ export default function DashboardPage() {
                 >
                   <div>
                     <div className="customer-name">{t.customer.name}</div>
-                    <div className="customer-mobile">
-                      {format(new Date(t.createdAt), "dd MMM yyyy, hh:mm a")}
-                    </div>
                   </div>
                   <div className="pending-badge" style={{ color: "var(--navy)", fontWeight: 700 }}>
                     {t.cylindersDelivered} Cyl
@@ -347,32 +350,29 @@ export default function DashboardPage() {
       {activeTab === "empty" && (
         <div className="card" style={{ padding: 0, overflow: "hidden" }}>
           <div style={{ padding: "16px", borderBottom: "1px solid var(--navy-border)", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <h3 style={{ fontSize: 15, fontWeight: 700, color: "var(--navy)", margin: 0 }}>Empties Collected Record</h3>
+            <h3 style={{ fontSize: 15, fontWeight: 700, color: "var(--navy)", margin: 0 }}>Customers Holding Empties</h3>
             <button onClick={() => setActiveTab("customers")} style={{ fontSize: 12, fontWeight: 600, color: "var(--navy)" }}>
               Back to Customers
             </button>
           </div>
           <div className="customer-list">
-            {(data?.emptyHistory || []).length === 0 ? (
+            {(data?.customersWithEmpties || []).length === 0 ? (
               <div style={{ padding: 32, textAlign: "center", color: "var(--text-muted)", fontSize: 14 }}>
-                No recent empty collections found.
+                No customers holding empty cylinders.
               </div>
             ) : (
-              (data?.emptyHistory || []).map((t) => (
+              (data?.customersWithEmpties || []).map((c) => (
                 <div
-                  key={t.id}
+                  key={c.id}
                   className="customer-list-item"
-                  onClick={() => router.push(`/customers/${t.customerId || ""}`)}
+                  onClick={() => router.push(`/customers/${c.id}`)}
                   style={{ cursor: "pointer" }}
                 >
                   <div>
-                    <div className="customer-name">{t.customer.name}</div>
-                    <div className="customer-mobile">
-                      {format(new Date(t.createdAt), "dd MMM yyyy, hh:mm a")}
-                    </div>
+                    <div className="customer-name">{c.name}</div>
                   </div>
                   <div className="pending-badge" style={{ color: "var(--warning)", fontWeight: 700 }}>
-                    {t.emptiesCollected} Cyl
+                    {c.totalEmptyLeft} Cyl
                   </div>
                 </div>
               ))

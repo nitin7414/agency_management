@@ -49,12 +49,15 @@ export async function GET() {
       include: { customer: { select: { name: true } } },
     });
 
-    // Recent empty collection history
-    const emptyHistory = await prisma.transaction.findMany({
-      where: { emptiesCollected: { gt: 0 } },
-      orderBy: { createdAt: "desc" },
-      take: 50,
-      include: { customer: { select: { name: true } } },
+    // Customers holding empty cylinders
+    const customersWithEmpties = await prisma.customer.findMany({
+      where: { totalEmptyLeft: { gt: 0 } },
+      orderBy: { totalEmptyLeft: "desc" },
+      select: {
+        id: true,
+        name: true,
+        totalEmptyLeft: true,
+      },
     });
 
     return NextResponse.json({
@@ -65,7 +68,7 @@ export async function GET() {
       totalDelivered: deliveredAgg._sum.totalDelivered ?? 0,
       paymentHistory,
       deliveryHistory,
-      emptyHistory,
+      customersWithEmpties,
     });
   } catch (err) {
     console.error(err);
