@@ -9,7 +9,7 @@
       "source_file": "F:\\projects\\shri_shyam\\eslint.config.mjs",
       "source_location": "L1",
       "id": "f_projects_shri_shyam_eslint_config_mjs",
-      "community": 12,
+      "community": 13,
       "norm_label": "eslint.config.mjs"
     },
     {
@@ -18,7 +18,7 @@
       "source_file": "F:\\projects\\shri_shyam\\next-env.d.ts",
       "source_location": "L1",
       "id": "f_projects_shri_shyam_next_env_d_ts",
-      "community": 13,
+      "community": 14,
       "norm_label": "next-env.d.ts"
     },
     {
@@ -27,7 +27,7 @@
       "source_file": "F:\\projects\\shri_shyam\\next.config.ts",
       "source_location": "L1",
       "id": "f_projects_shri_shyam_next_config_ts",
-      "community": 14,
+      "community": 15,
       "norm_label": "next.config.ts"
     },
     {
@@ -36,7 +36,7 @@
       "source_file": "F:\\projects\\shri_shyam\\app\\layout.tsx",
       "source_location": "L1",
       "id": "f_projects_shri_shyam_app_layout_tsx",
-      "community": 8,
+      "community": 10,
       "norm_label": "layout.tsx"
     },
     {
@@ -45,7 +45,7 @@
       "source_file": "F:\\projects\\shri_shyam\\app\\layout.tsx",
       "source_location": "L25",
       "id": "layout_rootlayout",
-      "community": 8,
+      "community": 10,
       "norm_label": "rootlayout()"
     },
     {
@@ -72,25 +72,25 @@
       "source_file": "F:\\projects\\shri_shyam\\app\\activity\\page.tsx",
       "source_location": "L1",
       "id": "f_projects_shri_shyam_app_activity_page_tsx",
-      "community": 6,
+      "community": 7,
       "norm_label": "page.tsx"
     },
     {
       "label": "dotClass()",
       "file_type": "code",
       "source_file": "F:\\projects\\shri_shyam\\app\\activity\\page.tsx",
-      "source_location": "L28",
+      "source_location": "L34",
       "id": "page_dotclass",
-      "community": 6,
+      "community": 7,
       "norm_label": "dotclass()"
     },
     {
       "label": "handleExport()",
       "file_type": "code",
       "source_file": "F:\\projects\\shri_shyam\\app\\activity\\page.tsx",
-      "source_location": "L42",
+      "source_location": "L56",
       "id": "page_handleexport",
-      "community": 6,
+      "community": 7,
       "norm_label": "handleexport()"
     },
     {
@@ -106,7 +106,7 @@
       "label": "GET()",
       "file_type": "code",
       "source_file": "F:\\projects\\shri_shyam\\app\\api\\tasks\\route.ts",
-      "source_location": "L4",
+      "source_location": "L6",
       "id": "route_get",
       "community": 0,
       "norm_label": "get()"
@@ -124,7 +124,7 @@
       "label": "POST()",
       "file_type": "code",
       "source_file": "F:\\projects\\shri_shyam\\app\\api\\tasks\\route.ts",
-      "source_location": "L13",
+      "source_location": "L15",
       "id": "route_post",
       "community": 1,
       "norm_label": "post()"
@@ -160,10 +160,19 @@
       "label": "PATCH()",
       "file_type": "code",
       "source_file": "F:\\projects\\shri_shyam\\app\\api\\tasks\\[id]\\route.ts",
-      "source_location": "L4",
+      "source_location": "L6",
       "id": "route_patch",
       "community": 0,
       "norm_label": "patch()"
+    },
+    {
+      "label": "DELETE()",
+      "file_type": "code",
+      "source_file": "F:\\projects\\shri_shyam\\app\\api\\tasks\\[id]\\route.ts",
+      "source_location": "L26",
+      "id": "route_delete",
+      "community": 0,
+      "norm_label": "delete()"
     },
     {
       "label": "route.ts",
@@ -207,7 +216,7 @@
       "source_file": "F:\\projects\\shri_shyam\\app\\api\\tasks\\route.ts",
       "source_location": "L1",
       "id": "f_projects_shri_shyam_app_api_tasks_route_ts",
-      "community": 0,
+      "community": 1,
       "norm_label": "route.ts"
     },
     {
@@ -220,21 +229,12 @@
       "norm_label": "route.ts"
     },
     {
-      "label": "DELETE()",
-      "file_type": "code",
-      "source_file": "F:\\projects\\shri_shyam\\app\\api\\tasks\\[id]\\route.ts",
-      "source_location": "L24",
-      "id": "route_delete",
-      "community": 0,
-      "norm_label": "delete()"
-    },
-    {
       "label": "route.ts",
       "file_type": "code",
       "source_file": "F:\\projects\\shri_shyam\\app\\api\\uploadthing\\route.ts",
       "source_location": "L1",
       "id": "f_projects_shri_shyam_app_api_uploadthing_route_ts",
-      "community": 15,
+      "community": 16,
       "norm_label": "route.ts"
     },
     {
@@ -243,17 +243,35 @@
       "source_file": "F:\\projects\\shri_shyam\\app\\customers\\[id]\\page.tsx",
       "source_location": "L1",
       "id": "f_projects_shri_shyam_app_customers_id_page_tsx",
-      "community": 9,
+      "community": 3,
       "norm_label": "page.tsx"
+    },
+    {
+      "label": "openEditModal()",
+      "file_type": "code",
+      "source_file": "F:\\projects\\shri_shyam\\app\\customers\\[id]\\page.tsx",
+      "source_location": "L69",
+      "id": "page_openeditmodal",
+      "community": 3,
+      "norm_label": "openeditmodal()"
     },
     {
       "label": "handleNewTransaction()",
       "file_type": "code",
       "source_file": "F:\\projects\\shri_shyam\\app\\customers\\[id]\\page.tsx",
-      "source_location": "L62",
+      "source_location": "L103",
       "id": "page_handlenewtransaction",
-      "community": 9,
+      "community": 3,
       "norm_label": "handlenewtransaction()"
+    },
+    {
+      "label": "async()",
+      "file_type": "code",
+      "source_file": "F:\\projects\\shri_shyam\\app\\customers\\[id]\\page.tsx",
+      "source_location": "L609",
+      "id": "page_async",
+      "community": 3,
+      "norm_label": "async()"
     },
     {
       "label": "page.tsx",
@@ -261,7 +279,7 @@
       "source_file": "F:\\projects\\shri_shyam\\app\\dashboard\\page.tsx",
       "source_location": "L1",
       "id": "f_projects_shri_shyam_app_dashboard_page_tsx",
-      "community": 16,
+      "community": 17,
       "norm_label": "page.tsx"
     },
     {
@@ -270,7 +288,7 @@
       "source_file": "F:\\projects\\shri_shyam\\app\\login\\page.tsx",
       "source_location": "L1",
       "id": "f_projects_shri_shyam_app_login_page_tsx",
-      "community": 10,
+      "community": 11,
       "norm_label": "page.tsx"
     },
     {
@@ -279,7 +297,7 @@
       "source_file": "F:\\projects\\shri_shyam\\app\\login\\page.tsx",
       "source_location": "L13",
       "id": "page_handlelogin",
-      "community": 10,
+      "community": 11,
       "norm_label": "handlelogin()"
     },
     {
@@ -288,7 +306,7 @@
       "source_file": "F:\\projects\\shri_shyam\\app\\settings\\page.tsx",
       "source_location": "L1",
       "id": "f_projects_shri_shyam_app_settings_page_tsx",
-      "community": 3,
+      "community": 4,
       "norm_label": "page.tsx"
     },
     {
@@ -297,7 +315,7 @@
       "source_file": "F:\\projects\\shri_shyam\\app\\settings\\page.tsx",
       "source_location": "L54",
       "id": "page_handlesaveprofile",
-      "community": 3,
+      "community": 4,
       "norm_label": "handlesaveprofile()"
     },
     {
@@ -306,7 +324,7 @@
       "source_file": "F:\\projects\\shri_shyam\\app\\settings\\page.tsx",
       "source_location": "L79",
       "id": "page_handlesavestock",
-      "community": 3,
+      "community": 4,
       "norm_label": "handlesavestock()"
     },
     {
@@ -315,7 +333,7 @@
       "source_file": "F:\\projects\\shri_shyam\\app\\settings\\page.tsx",
       "source_location": "L99",
       "id": "page_handlelogout",
-      "community": 3,
+      "community": 4,
       "norm_label": "handlelogout()"
     },
     {
@@ -324,16 +342,16 @@
       "source_file": "F:\\projects\\shri_shyam\\app\\tasks\\page.tsx",
       "source_location": "L1",
       "id": "f_projects_shri_shyam_app_tasks_page_tsx",
-      "community": 4,
+      "community": 5,
       "norm_label": "page.tsx"
     },
     {
       "label": "handleSave()",
       "file_type": "code",
       "source_file": "F:\\projects\\shri_shyam\\app\\tasks\\page.tsx",
-      "source_location": "L29",
+      "source_location": "L30",
       "id": "page_handlesave",
-      "community": 4,
+      "community": 5,
       "norm_label": "handlesave()"
     },
     {
@@ -342,7 +360,7 @@
       "source_file": "F:\\projects\\shri_shyam\\app\\tasks\\page.tsx",
       "source_location": "L61",
       "id": "page_handledelete",
-      "community": 4,
+      "community": 5,
       "norm_label": "handledelete()"
     },
     {
@@ -351,7 +369,7 @@
       "source_file": "F:\\projects\\shri_shyam\\app\\tasks\\page.tsx",
       "source_location": "L68",
       "id": "page_openedit",
-      "community": 4,
+      "community": 5,
       "norm_label": "openedit()"
     },
     {
@@ -360,8 +378,26 @@
       "source_file": "F:\\projects\\shri_shyam\\components\\AddCustomerModal.tsx",
       "source_location": "L1",
       "id": "f_projects_shri_shyam_components_addcustomermodal_tsx",
-      "community": 17,
+      "community": 8,
       "norm_label": "addcustomermodal.tsx"
+    },
+    {
+      "label": "handleSubmit()",
+      "file_type": "code",
+      "source_file": "F:\\projects\\shri_shyam\\components\\AddCustomerModal.tsx",
+      "source_location": "L25",
+      "id": "addcustomermodal_handlesubmit",
+      "community": 8,
+      "norm_label": "handlesubmit()"
+    },
+    {
+      "label": "renderUploadSlot()",
+      "file_type": "code",
+      "source_file": "F:\\projects\\shri_shyam\\components\\AddCustomerModal.tsx",
+      "source_location": "L203",
+      "id": "addcustomermodal_renderuploadslot",
+      "community": 8,
+      "norm_label": "renderuploadslot()"
     },
     {
       "label": "AppShell.tsx",
@@ -369,7 +405,7 @@
       "source_file": "F:\\projects\\shri_shyam\\components\\AppShell.tsx",
       "source_location": "L1",
       "id": "f_projects_shri_shyam_components_appshell_tsx",
-      "community": 5,
+      "community": 6,
       "norm_label": "appshell.tsx"
     },
     {
@@ -378,7 +414,7 @@
       "source_file": "F:\\projects\\shri_shyam\\components\\AppShell.tsx",
       "source_location": "L9",
       "id": "appshell_homeicon",
-      "community": 5,
+      "community": 6,
       "norm_label": "homeicon()"
     },
     {
@@ -387,7 +423,7 @@
       "source_file": "F:\\projects\\shri_shyam\\components\\AppShell.tsx",
       "source_location": "L18",
       "id": "appshell_taskicon",
-      "community": 5,
+      "community": 6,
       "norm_label": "taskicon()"
     },
     {
@@ -396,7 +432,7 @@
       "source_file": "F:\\projects\\shri_shyam\\components\\AppShell.tsx",
       "source_location": "L30",
       "id": "appshell_activityicon",
-      "community": 5,
+      "community": 6,
       "norm_label": "activityicon()"
     },
     {
@@ -414,7 +450,7 @@
       "source_file": "F:\\projects\\shri_shyam\\components\\ThemeProvider.tsx",
       "source_location": "L1",
       "id": "f_projects_shri_shyam_components_themeprovider_tsx",
-      "community": 7,
+      "community": 9,
       "norm_label": "themeprovider.tsx"
     },
     {
@@ -423,7 +459,7 @@
       "source_file": "F:\\projects\\shri_shyam\\components\\ThemeProvider.tsx",
       "source_location": "L15",
       "id": "themeprovider_themeprovider",
-      "community": 7,
+      "community": 9,
       "norm_label": "themeprovider()"
     },
     {
@@ -432,8 +468,17 @@
       "source_file": "F:\\projects\\shri_shyam\\components\\ThemeProvider.tsx",
       "source_location": "L39",
       "id": "themeprovider_usetheme",
-      "community": 7,
+      "community": 9,
       "norm_label": "usetheme()"
+    },
+    {
+      "label": "uploadthing.ts",
+      "file_type": "code",
+      "source_file": "F:\\projects\\shri_shyam\\components\\uploadthing.ts",
+      "source_location": "L1",
+      "id": "f_projects_shri_shyam_components_uploadthing_ts",
+      "community": 19,
+      "norm_label": "uploadthing.ts"
     },
     {
       "label": "prisma.ts",
@@ -441,7 +486,7 @@
       "source_file": "F:\\projects\\shri_shyam\\lib\\prisma.ts",
       "source_location": "L1",
       "id": "f_projects_shri_shyam_lib_prisma_ts",
-      "community": 19,
+      "community": 20,
       "norm_label": "prisma.ts"
     },
     {
@@ -468,7 +513,7 @@
       "source_file": "F:\\projects\\shri_shyam\\lib\\uploadthing.ts",
       "source_location": "L1",
       "id": "f_projects_shri_shyam_lib_uploadthing_ts",
-      "community": 20,
+      "community": 21,
       "norm_label": "uploadthing.ts"
     },
     {
@@ -477,7 +522,7 @@
       "source_file": "F:\\projects\\shri_shyam\\prisma\\seed.ts",
       "source_location": "L1",
       "id": "f_projects_shri_shyam_prisma_seed_ts",
-      "community": 11,
+      "community": 12,
       "norm_label": "seed.ts"
     },
     {
@@ -486,7 +531,7 @@
       "source_file": "F:\\projects\\shri_shyam\\prisma\\seed.ts",
       "source_location": "L6",
       "id": "seed_main",
-      "community": 11,
+      "community": 12,
       "norm_label": "main()"
     }
   ],
@@ -531,7 +576,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "F:\\projects\\shri_shyam\\app\\activity\\page.tsx",
-      "source_location": "L28",
+      "source_location": "L34",
       "weight": 1.0,
       "_src": "f_projects_shri_shyam_app_activity_page_tsx",
       "_tgt": "page_dotclass",
@@ -543,7 +588,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "F:\\projects\\shri_shyam\\app\\activity\\page.tsx",
-      "source_location": "L42",
+      "source_location": "L56",
       "weight": 1.0,
       "_src": "f_projects_shri_shyam_app_activity_page_tsx",
       "_tgt": "page_handleexport",
@@ -555,7 +600,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "F:\\projects\\shri_shyam\\app\\api\\activity\\route.ts",
-      "source_location": "L4",
+      "source_location": "L6",
       "weight": 1.0,
       "_src": "f_projects_shri_shyam_app_api_activity_route_ts",
       "_tgt": "route_get",
@@ -567,7 +612,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "F:\\projects\\shri_shyam\\app\\api\\customers\\route.ts",
-      "source_location": "L5",
+      "source_location": "L7",
       "weight": 1.0,
       "_src": "f_projects_shri_shyam_app_api_customers_route_ts",
       "_tgt": "route_get",
@@ -579,7 +624,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "F:\\projects\\shri_shyam\\app\\api\\customers\\[id]\\route.ts",
-      "source_location": "L5",
+      "source_location": "L7",
       "weight": 1.0,
       "_src": "f_projects_shri_shyam_app_api_customers_id_route_ts",
       "_tgt": "route_get",
@@ -591,7 +636,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "F:\\projects\\shri_shyam\\app\\api\\dashboard\\route.ts",
-      "source_location": "L4",
+      "source_location": "L6",
       "weight": 1.0,
       "_src": "f_projects_shri_shyam_app_api_dashboard_route_ts",
       "_tgt": "route_get",
@@ -603,7 +648,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "F:\\projects\\shri_shyam\\app\\api\\settings\\route.ts",
-      "source_location": "L6",
+      "source_location": "L8",
       "weight": 1.0,
       "_src": "f_projects_shri_shyam_app_api_settings_route_ts",
       "_tgt": "route_get",
@@ -615,7 +660,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "F:\\projects\\shri_shyam\\app\\api\\stock\\route.ts",
-      "source_location": "L4",
+      "source_location": "L6",
       "weight": 1.0,
       "_src": "f_projects_shri_shyam_app_api_stock_route_ts",
       "_tgt": "route_get",
@@ -627,7 +672,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "F:\\projects\\shri_shyam\\app\\api\\tasks\\route.ts",
-      "source_location": "L4",
+      "source_location": "L6",
       "weight": 1.0,
       "_src": "f_projects_shri_shyam_app_api_tasks_route_ts",
       "_tgt": "route_get",
@@ -651,7 +696,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "F:\\projects\\shri_shyam\\app\\api\\auth\\login\\route.ts",
-      "source_location": "L6",
+      "source_location": "L8",
       "weight": 1.0,
       "_src": "f_projects_shri_shyam_app_api_auth_login_route_ts",
       "_tgt": "route_post",
@@ -663,7 +708,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "F:\\projects\\shri_shyam\\app\\api\\auth\\logout\\route.ts",
-      "source_location": "L4",
+      "source_location": "L6",
       "weight": 1.0,
       "_src": "f_projects_shri_shyam_app_api_auth_logout_route_ts",
       "_tgt": "route_post",
@@ -675,7 +720,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "F:\\projects\\shri_shyam\\app\\api\\customers\\route.ts",
-      "source_location": "L35",
+      "source_location": "L37",
       "weight": 1.0,
       "_src": "f_projects_shri_shyam_app_api_customers_route_ts",
       "_tgt": "route_post",
@@ -687,7 +732,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "F:\\projects\\shri_shyam\\app\\api\\customers\\[id]\\transactions\\route.ts",
-      "source_location": "L5",
+      "source_location": "L7",
       "weight": 1.0,
       "_src": "f_projects_shri_shyam_app_api_customers_id_transactions_route_ts",
       "_tgt": "route_post",
@@ -699,7 +744,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "F:\\projects\\shri_shyam\\app\\api\\tasks\\route.ts",
-      "source_location": "L13",
+      "source_location": "L15",
       "weight": 1.0,
       "_src": "f_projects_shri_shyam_app_api_tasks_route_ts",
       "_tgt": "route_post",
@@ -723,7 +768,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "F:\\projects\\shri_shyam\\app\\api\\customers\\[id]\\route.ts",
-      "source_location": "L31",
+      "source_location": "L33",
       "weight": 1.0,
       "_src": "f_projects_shri_shyam_app_api_customers_id_route_ts",
       "_tgt": "route_patch",
@@ -734,8 +779,20 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "F:\\projects\\shri_shyam\\app\\api\\customers\\[id]\\route.ts",
+      "source_location": "L57",
+      "weight": 1.0,
+      "_src": "f_projects_shri_shyam_app_api_customers_id_route_ts",
+      "_tgt": "route_delete",
+      "source": "f_projects_shri_shyam_app_api_customers_id_route_ts",
+      "target": "route_delete",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "F:\\projects\\shri_shyam\\app\\api\\settings\\route.ts",
-      "source_location": "L22",
+      "source_location": "L24",
       "weight": 1.0,
       "_src": "f_projects_shri_shyam_app_api_settings_route_ts",
       "_tgt": "route_patch",
@@ -747,7 +804,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "F:\\projects\\shri_shyam\\app\\api\\stock\\route.ts",
-      "source_location": "L14",
+      "source_location": "L16",
       "weight": 1.0,
       "_src": "f_projects_shri_shyam_app_api_stock_route_ts",
       "_tgt": "route_patch",
@@ -759,7 +816,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "F:\\projects\\shri_shyam\\app\\api\\tasks\\[id]\\route.ts",
-      "source_location": "L4",
+      "source_location": "L6",
       "weight": 1.0,
       "_src": "f_projects_shri_shyam_app_api_tasks_id_route_ts",
       "_tgt": "route_patch",
@@ -783,24 +840,48 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "F:\\projects\\shri_shyam\\app\\api\\tasks\\[id]\\route.ts",
-      "source_location": "L24",
+      "source_location": "L26",
       "weight": 1.0,
       "_src": "f_projects_shri_shyam_app_api_tasks_id_route_ts",
       "_tgt": "route_delete",
-      "source": "f_projects_shri_shyam_app_api_tasks_id_route_ts",
-      "target": "route_delete",
+      "source": "route_delete",
+      "target": "f_projects_shri_shyam_app_api_tasks_id_route_ts",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "F:\\projects\\shri_shyam\\app\\customers\\[id]\\page.tsx",
-      "source_location": "L62",
+      "source_location": "L69",
+      "weight": 1.0,
+      "_src": "f_projects_shri_shyam_app_customers_id_page_tsx",
+      "_tgt": "page_openeditmodal",
+      "source": "f_projects_shri_shyam_app_customers_id_page_tsx",
+      "target": "page_openeditmodal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "F:\\projects\\shri_shyam\\app\\customers\\[id]\\page.tsx",
+      "source_location": "L103",
       "weight": 1.0,
       "_src": "f_projects_shri_shyam_app_customers_id_page_tsx",
       "_tgt": "page_handlenewtransaction",
       "source": "f_projects_shri_shyam_app_customers_id_page_tsx",
       "target": "page_handlenewtransaction",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "F:\\projects\\shri_shyam\\app\\customers\\[id]\\page.tsx",
+      "source_location": "L609",
+      "weight": 1.0,
+      "_src": "f_projects_shri_shyam_app_customers_id_page_tsx",
+      "_tgt": "page_async",
+      "source": "f_projects_shri_shyam_app_customers_id_page_tsx",
+      "target": "page_async",
       "confidence_score": 1.0
     },
     {
@@ -855,7 +936,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "F:\\projects\\shri_shyam\\app\\tasks\\page.tsx",
-      "source_location": "L29",
+      "source_location": "L30",
       "weight": 1.0,
       "_src": "f_projects_shri_shyam_app_tasks_page_tsx",
       "_tgt": "page_handlesave",
@@ -885,6 +966,30 @@
       "_tgt": "page_openedit",
       "source": "f_projects_shri_shyam_app_tasks_page_tsx",
       "target": "page_openedit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "F:\\projects\\shri_shyam\\components\\AddCustomerModal.tsx",
+      "source_location": "L25",
+      "weight": 1.0,
+      "_src": "f_projects_shri_shyam_components_addcustomermodal_tsx",
+      "_tgt": "addcustomermodal_handlesubmit",
+      "source": "f_projects_shri_shyam_components_addcustomermodal_tsx",
+      "target": "addcustomermodal_handlesubmit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "F:\\projects\\shri_shyam\\components\\AddCustomerModal.tsx",
+      "source_location": "L207",
+      "weight": 1.0,
+      "_src": "f_projects_shri_shyam_components_addcustomermodal_tsx",
+      "_tgt": "addcustomermodal_renderuploadslot",
+      "source": "f_projects_shri_shyam_components_addcustomermodal_tsx",
+      "target": "addcustomermodal_renderuploadslot",
       "confidence_score": 1.0
     },
     {
