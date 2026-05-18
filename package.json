@@ -14,17 +14,20 @@
     "postinstall": "prisma generate"
   },
   "dependencies": {
+    "@capacitor/android": "^8.3.4",
+    "@capacitor/cli": "^8.3.4",
+    "@capacitor/core": "^8.3.4",
     "@prisma/client": "^5.22.0",
     "@uploadthing/react": "^7.3.3",
-    "uploadthing": "^7.7.4",
     "bcryptjs": "^2.4.3",
+    "date-fns": "^3.6.0",
     "iron-session": "^8.0.3",
     "next": "16.2.6",
+    "papaparse": "^5.4.1",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "react-hot-toast": "^2.4.1",
-    "date-fns": "^3.6.0",
-    "papaparse": "^5.4.1"
+    "uploadthing": "^7.7.4"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",

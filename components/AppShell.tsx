@@ -55,11 +55,11 @@ const NAV_ITEMS = [
 // ─── Brand component ─────────────────────────────────────────
 function Brand({ logoUrl }: { logoUrl?: string }) {
   return (
-    <div className="brand" style={{ padding: "16px 12px", gap: 10 }}>
-      <div className="brand-logo" style={{ background: "transparent", width: 56, height: 56, flexShrink: 0 }}>
-        <Image src={logoUrl || "/logo.png"} alt="logo" width={56} height={56} style={{ borderRadius: "50%", objectFit: "cover" }} />
+    <div className="brand" style={{ padding: "14px 12px", gap: 10, display: "flex", alignItems: "center" }}>
+      <div className="brand-logo" style={{ background: "transparent", width: 40, height: 40, flexShrink: 0 }}>
+        <Image src={logoUrl || "/logo.png"} alt="logo" width={40} height={40} style={{ borderRadius: "50%", objectFit: "cover" }} />
       </div>
-      <span className="brand-name" style={{ fontSize: "14px", fontWeight: 700, lineHeight: "1.3" }}>Shri Shyam<br />Gas Agency</span>
+      <span className="brand-name" style={{ fontSize: "13px", fontWeight: 700, lineHeight: "1.3" }}>Shri Shyam<br />Gas Agency</span>
     </div>
   );
 }
@@ -113,11 +113,11 @@ function FooterNav() {
 // ─── Mobile Header ───────────────────────────────────────────
 function MobileHeader({ logoUrl }: { logoUrl?: string }) {
   return (
-    <header className="mobile-header" style={{ padding: "10px 16px", gap: 16, height: 100, alignItems: "center" }}>
-      <div className="brand-logo" style={{ width: 80, height: 80, background: "transparent", flexShrink: 0 }}>
-        <Image src={logoUrl || "/logo.png"} alt="logo" width={80} height={80} style={{ borderRadius: "50%", objectFit: "cover" }} />
+    <header className="mobile-header" style={{ padding: "12px 16px", gap: 12, height: "64px", alignItems: "center" }}>
+      <div className="brand-logo" style={{ width: 40, height: 40, background: "transparent", flexShrink: 0 }}>
+        <Image src={logoUrl || "/logo.png"} alt="logo" width={40} height={40} style={{ borderRadius: "50%", objectFit: "cover" }} />
       </div>
-      <span className="brand-name" style={{ fontSize: "18px", fontWeight: 700, color: "var(--navy)" }}>Shri Shyam Gas Agency</span>
+      <span className="brand-name" style={{ fontSize: "16px", fontWeight: 700, color: "var(--navy)" }}>Shri Shyam Gas Agency</span>
     </header>
   );
 }

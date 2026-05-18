@@ -56,20 +56,17 @@ export default function LoginPage() {
         <div style={{ textAlign: "center", marginBottom: 28 }}>
           <div
             style={{
-              width: 60,
-              height: 60,
-              background: "var(--navy)",
+              width: 72,
+              height: 72,
               borderRadius: "50%",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               margin: "0 auto 12px",
-              color: "#fff",
-              fontSize: 26,
-              fontWeight: 700,
+              overflow: "hidden",
             }}
           >
-            S
+            <img src="/logo.png" alt="logo" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
           </div>
           <div
             style={{
