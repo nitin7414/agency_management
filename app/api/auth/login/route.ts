@@ -13,6 +13,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Email and password required" }, { status: 400 });
     }
 
+    // Ensure your Admin model in schema.prisma has: tokenVersion Int @default(0)
     const admin = await prisma.admin.findUnique({ where: { email } });
     if (!admin) {
       return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
@@ -26,6 +27,10 @@ export async function POST(req: NextRequest) {
     const session = await getSession();
     session.adminId = admin.id;
     session.isLoggedIn = true;
+    
+    // Inject the tokenVersion into the session payload
+    session.tokenVersion = admin.tokenVersion;
+    
     await session.save();
 
     return NextResponse.json({ success: true, name: admin.name });

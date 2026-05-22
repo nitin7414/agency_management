@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import bcrypt from "bcryptjs";
 import { getSession } from "@/lib/session";
+import { IncrementalCache } from "next/dist/server/lib/incremental-cache";
 
 export const dynamic = "force-dynamic";
 
@@ -40,9 +41,15 @@ export async function PATCH(req: NextRequest) {
       updateData.password = await bcrypt.hash(newPassword, 12);
     }
 
+    // include tokenVersion increment inside the data object
+    const data = {
+      ...updateData,
+      tokenVersion: { increment: 1 },
+    };
+
     const admin = await prisma.admin.update({
       where: { id: session.adminId },
-      data: updateData,
+      data,
       select: { id: true, name: true, email: true, logoUrl: true, darkMode: true },
     });
 
