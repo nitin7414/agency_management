@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { getSession } from "@/lib/session";
+import { getValidSession } from "@/lib/session";
 import bcrypt from "bcryptjs";
 
 export const dynamic = "force-dynamic";
@@ -24,7 +24,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
     }
 
-    const session = await getSession();
+    const session = await getValidSession();
     session.adminId = admin.id;
     session.isLoggedIn = true;
     

@@ -1,15 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import bcrypt from "bcryptjs";
-import { getSession } from "@/lib/session";
+import { getValidSession } from "@/lib/session";
 import { IncrementalCache } from "next/dist/server/lib/incremental-cache";
 
 export const dynamic = "force-dynamic";
 
 export async function GET() {
   try {
-    const session = await getSession();
-    if (!session.isLoggedIn || !session.adminId) {
+    const session = await getValidSession();
+    if (!session || !session.isLoggedIn || !session.adminId) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
     const admin = await prisma.admin.findUnique({
@@ -24,8 +24,8 @@ export async function GET() {
 
 export async function PATCH(req: NextRequest) {
   try {
-    const session = await getSession();
-    if (!session.isLoggedIn || !session.adminId) {
+    const session = await getValidSession();
+    if (!session || !session.isLoggedIn || !session.adminId) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 

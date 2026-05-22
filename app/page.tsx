@@ -1,8 +1,11 @@
 import { redirect } from "next/navigation";
-import { getSession } from "@/lib/session";
+import { getValidSession } from "@/lib/session";
 
 export default async function RootPage() {
-  const session = await getSession();
+  const session = await getValidSession();
+  if (!session) {
+    redirect("/login");
+  }
   if (session.isLoggedIn) {
     redirect("/dashboard");
   } else {

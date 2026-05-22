@@ -1,13 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { getSession } from "@/lib/session";
+import { getValidSession } from "@/lib/session";
 
 export const dynamic = "force-dynamic";
 
 // GET /api/backup - Export all business data as a downloadable JSON file
 export async function GET() {
   try {
-    const session = await getSession();
+    const session = await getValidSession();
     if (!session.isLoggedIn || !session.adminId) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
@@ -63,7 +63,7 @@ export async function GET() {
 // POST /api/backup - Restore database from a uploaded JSON backup
 export async function POST(req: NextRequest) {
   try {
-    const session = await getSession();
+    const session = await getValidSession();
     if (!session.isLoggedIn || !session.adminId) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
