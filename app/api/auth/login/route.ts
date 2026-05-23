@@ -25,12 +25,16 @@ export async function POST(req: NextRequest) {
     }
 
     const session = await getValidSession();
+    if (!session) {
+      return NextResponse.json({ error: "Session unavailable" }, { status: 500 });
+    }
+
     session.adminId = admin.id;
     session.isLoggedIn = true;
-    
+
     // Inject the tokenVersion into the session payload
     session.tokenVersion = admin.tokenVersion;
-    
+
     await session.save();
 
     return NextResponse.json({ success: true, name: admin.name });
