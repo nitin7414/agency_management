@@ -1,44 +1,31 @@
-import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
-import { getValidSession } from "@/lib/session";
-import bcrypt from "bcryptjs";
+import { NextResponse } from 'next/server';
+import { getSession } from '@/lib/session'; 
 
-export const dynamic = "force-dynamic";
-
-export async function POST(req: NextRequest) {
+export async function POST(request: Request) {
   try {
-    const { email, password } = await req.json();
+    const { pin } = await request.json();
+    
+    // Grabs the PIN from your .env file, or defaults to 123456 if it can't find it
+    const correctPin = process.env.APP_SECURITY_PIN;
 
-    if (!email || !password) {
-      return NextResponse.json({ error: "Email and password required" }, { status: 400 });
+    if (pin === correctPin) {
+      // Create a valid session
+      const session = await getSession();
+      session.isLoggedIn = true;
+      await session.save();
+      
+      return NextResponse.json({ success: true });
     }
 
-    // Ensure your Admin model in schema.prisma has: tokenVersion Int @default(0)
-    const admin = await prisma.admin.findUnique({ where: { email } });
-    if (!admin) {
-      return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
-    }
-
-    const valid = await bcrypt.compare(password, admin.password);
-    if (!valid) {
-      return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
-    }
-
-    const session = await getValidSession();
-    if (!session) {
-      return NextResponse.json({ error: "Session unavailable" }, { status: 500 });
-    }
-
-    session.adminId = admin.id;
-    session.isLoggedIn = true;
-
-    // Inject the tokenVersion into the session payload
-    session.tokenVersion = admin.tokenVersion;
-
-    await session.save();
-
-    return NextResponse.json({ success: true, name: admin.name });
-  } catch {
-    return NextResponse.json({ error: "Server error" }, { status: 500 });
+    // If the PIN doesn't match
+    return NextResponse.json(
+      { success: false, message: 'Invalid PIN' },
+      { status: 401 }
+    );
+  } catch (error) {
+    return NextResponse.json(
+      { success: false, message: 'Server error' },
+      { status: 500 }
+    );
   }
 }

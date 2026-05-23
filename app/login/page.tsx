@@ -1,124 +1,81 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import toast from "react-hot-toast";
 
-export default function LoginPage() {
+export default function PinLogin() {
+  const [pin, setPin] = useState("");
+  const [error, setError] = useState("");
   const router = useRouter();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
 
-  async function handleLogin(e: React.FormEvent) {
-    e.preventDefault();
-    setLoading(true);
-    try {
-      const res = await fetch("/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Login failed");
-      toast.success(`Welcome back!`);
-      router.push("/dashboard");
-    } catch (err: unknown) {
-      toast.error(err instanceof Error ? err.message : "Login failed");
-    } finally {
-      setLoading(false);
+  // Handle Numpad Clicks
+  const handlePress = (num: string) => {
+    if (pin.length < 6) {
+      setPin((prev) => prev + num);
+      setError("");
     }
-  }
+  };
+
+  const handleBackspace = () => {
+    setPin((prev) => prev.slice(0, -1));
+  };
+
+  // Auto-submit when 6 digits are reached
+  useEffect(() => {
+    if (pin.length === 6) {
+      submitPin();
+    }
+  }, [pin]);
+
+  const submitPin = async () => {
+    const res = await fetch("/api/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ pin }),
+    });
+
+    if (res.ok) {
+      router.push("/dashboard");
+      router.refresh();
+    } else {
+      setError("Incorrect PIN. Try again.");
+      setPin("");
+    }
+  };
 
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        background: "var(--bg)",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: 16,
-      }}
-    >
-      <div
-        style={{
-          width: "100%",
-          maxWidth: 360,
-          background: "var(--white)",
-          border: "1px solid var(--navy-border)",
-          borderRadius: "var(--radius-lg)",
-          padding: 32,
-          boxShadow: "var(--card-shadow-hover)",
-        }}
-      >
-        {/* Logo + Name */}
-        <div style={{ textAlign: "center", marginBottom: 28 }}>
+    <div className="pin-container">
+      <div className="pin-header">
+        <h1>Enter Security PIN</h1>
+        <p>Please enter your 6-digit PIN to continue</p>
+      </div>
+
+      {/* PIN Dots Display */}
+      <div className="pin-dots">
+        {[...Array(6)].map((_, i) => (
           <div
-            style={{
-              width: 72,
-              height: 72,
-              borderRadius: "50%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              margin: "0 auto 12px",
-              overflow: "hidden",
-            }}
-          >
-            <img src="/logo.png" alt="logo" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-          </div>
-          <div
-            style={{
-              fontSize: 17,
-              fontWeight: 700,
-              color: "var(--navy)",
-              lineHeight: 1.3,
-            }}
-          >
-            Shri Shyam Gas Agency
-          </div>
-          <div style={{ fontSize: 13, color: "var(--text-muted)", marginTop: 4 }}>
-            Management System
-          </div>
-        </div>
+            key={i}
+            className={`pin-dot ${i < pin.length ? "filled" : ""}`}
+          />
+        ))}
+      </div>
 
-        <form onSubmit={handleLogin}>
-          <div className="form-group">
-            <label className="form-label">Email</label>
-            <input
-              className="form-input"
-              type="email"
-              placeholder="admin@example.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              autoComplete="email"
-            />
-          </div>
+      {error && <p className="pin-error">{error}</p>}
 
-          <div className="form-group">
-            <label className="form-label">Password</label>
-            <input
-              className="form-input"
-              type="password"
-              placeholder="••••••••"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              autoComplete="current-password"
-            />
-          </div>
-
-          <button
-            type="submit"
-            className="btn btn-primary btn-full"
-            disabled={loading}
-            style={{ marginTop: 8, padding: "12px 0", fontSize: 15 }}
-          >
-            {loading ? "Signing in…" : "Sign In"}
+      {/* Numpad */}
+      <div className="pin-numpad">
+        {["1", "2", "3", "4", "5", "6", "7", "8", "9"].map((num) => (
+          <button key={num} onClick={() => handlePress(num)} className="pin-key">
+            {num}
           </button>
-        </form>
+        ))}
+        <div /> {/* Empty space for bottom left */}
+        <button onClick={() => handlePress("0")} className="pin-key">
+          0
+        </button>
+        <button onClick={handleBackspace} className="pin-key action-key">
+          ⌫
+        </button>
       </div>
     </div>
   );

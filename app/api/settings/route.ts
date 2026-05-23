@@ -1,21 +1,23 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import bcrypt from "bcryptjs";
 import { getValidSession } from "@/lib/session";
-import { IncrementalCache } from "next/dist/server/lib/incremental-cache";
 
 export const dynamic = "force-dynamic";
 
 export async function GET() {
   try {
     const session = await getValidSession();
-    if (!session || !session.isLoggedIn || !session.adminId) {
+    
+    // Check if the user passed the PIN lock
+    if (!session || !session.isLoggedIn) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
-    const admin = await prisma.admin.findUnique({
-      where: { id: session.adminId },
-      select: { id: true, name: true, email: true, logoUrl: true, darkMode: true },
+    
+    // Fetch the single config row (no need for specific adminId anymore)
+    const admin = await prisma.admin.findFirst({
+      select: { id: true, logoUrl: true, darkMode: true },
     });
+    
     return NextResponse.json(admin);
   } catch {
     return NextResponse.json({ error: "Server error" }, { status: 500 });
@@ -25,32 +27,29 @@ export async function GET() {
 export async function PATCH(req: NextRequest) {
   try {
     const session = await getValidSession();
-    if (!session || !session.isLoggedIn || !session.adminId) {
+    
+    if (!session || !session.isLoggedIn) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const body = await req.json();
-    const { name, email, newPassword, logoUrl, darkMode } = body;
+    const { logoUrl, darkMode } = body;
 
     const updateData: Record<string, unknown> = {};
-    if (name) updateData.name = name;
-    if (email) updateData.email = email;
     if (logoUrl !== undefined) updateData.logoUrl = logoUrl;
     if (darkMode !== undefined) updateData.darkMode = darkMode;
-    if (newPassword) {
-      updateData.password = await bcrypt.hash(newPassword, 12);
+
+    // Find the single app config row
+    const adminRow = await prisma.admin.findFirst();
+    if (!adminRow) {
+      return NextResponse.json({ error: "App configuration not found" }, { status: 404 });
     }
 
-    // include tokenVersion increment inside the data object
-    const data = {
-      ...updateData,
-      tokenVersion: { increment: 1 },
-    };
-
+    // Update the config
     const admin = await prisma.admin.update({
-      where: { id: session.adminId },
-      data,
-      select: { id: true, name: true, email: true, logoUrl: true, darkMode: true },
+      where: { id: adminRow.id },
+      data: updateData,
+      select: { id: true, logoUrl: true, darkMode: true },
     });
 
     return NextResponse.json(admin);

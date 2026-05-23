@@ -1,24 +1,17 @@
 import { PrismaClient } from "@prisma/client";
-import bcrypt from "bcryptjs";
 
 const prisma = new PrismaClient();
 
 async function main() {
-  // Create default admin
-  const existing = await prisma.admin.findFirst();
-  if (!existing) {
-    const hashed = await bcrypt.hash("admin123", 12);
+  // Create default config/admin row for settings (if none exists)
+  const existingAdmin = await prisma.admin.findFirst();
+  if (!existingAdmin) {
     await prisma.admin.create({
       data: {
-        name: "Admin",
-        email: "admin@ssga.com",
-        password: hashed,
+        darkMode: false,
       },
     });
-    console.log("✅ Admin created: admin@ssga.com / admin123");
-    console.log("   ⚠️  Change the password after first login!");
-  } else {
-    console.log("ℹ️  Admin already exists, skipping.");
+    console.log("✅ App Config (Admin row) initialized");
   }
 
   // Create initial agency stock record

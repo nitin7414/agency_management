@@ -1,3 +1,4 @@
+// app/api/backup/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getValidSession } from "@/lib/session";
@@ -8,7 +9,8 @@ export const dynamic = "force-dynamic";
 export async function GET() {
   try {
     const session = await getValidSession();
-    if (!session || !session.isLoggedIn || !session.adminId) {
+    // Removed `!session.adminId` because the PIN system doesn't use it
+    if (!session || !session.isLoggedIn) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
@@ -64,7 +66,8 @@ export async function GET() {
 export async function POST(req: NextRequest) {
   try {
     const session = await getValidSession();
-    if (!session || !session.isLoggedIn || !session.adminId) {
+    // Removed `!session.adminId` here as well
+    if (!session || !session.isLoggedIn) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
@@ -145,8 +148,6 @@ export async function POST(req: NextRequest) {
     }));
 
     // Perform database operations in an ACID transaction
-    // Deletions MUST occur in order of foreign key dependency (Transactions first, then Customers)
-    // Creations MUST occur in reverse order (Customers first, then Transactions)
     await prisma.$transaction([
       prisma.transaction.deleteMany(),
       prisma.customer.deleteMany(),

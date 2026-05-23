@@ -1,8 +1,9 @@
+// components/AppShell.tsx
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 
 // ─── SVG Icons ──────────────────────────────────────────────
@@ -130,6 +131,44 @@ export default function AppShell({
   children: React.ReactNode;
   logoUrl?: string;
 }) {
+  const router = useRouter();
+  const pathname = usePathname();
+
+  // APP LOCK LOGIC
+  useEffect(() => {
+    let appListener: any = null;
+
+    const initCapacitorAppLock = async () => {
+      try {
+        // Dynamically import to avoid Next.js server-side rendering errors
+        // @ts-ignore: Capacitor module only available at runtime in app environment
+        const { App } = await import('@capacitor/app');
+        
+        appListener = await App.addListener('appStateChange', async ({ isActive }: { isActive: boolean }) => {
+          if (!isActive && pathname !== "/login") {
+            // Destroy the session so they are required to re-authenticate
+            await fetch("/api/auth/logout", { method: "POST" });
+            
+            // Redirect to the PIN page instantly
+            router.push("/login");
+          }
+        });
+      } catch (err) {
+        // Silently fail if not running in a Capacitor app environment (e.g. running in standard browser)
+        console.warn("Capacitor App plugin not loaded.");
+      }
+    };
+
+    initCapacitorAppLock();
+
+    // Cleanup listener on unmount
+    return () => {
+      if (appListener) {
+        appListener.remove();
+      }
+    };
+  }, [pathname, router]);
+
   return (
     <div className="app-layout">
       {/* Web sidebar */}
