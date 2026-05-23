@@ -135,33 +135,34 @@ export default function AppShell({
   const pathname = usePathname();
 
   // APP LOCK LOGIC
+// APP LOCK LOGIC
   useEffect(() => {
     let appListener: any = null;
 
     const initCapacitorAppLock = async () => {
       try {
-        // Dynamically import to avoid Next.js server-side rendering errors
-        // @ts-ignore: Capacitor module only available at runtime in app environment
         const { App } = await import('@capacitor/app');
         
-        appListener = await App.addListener('appStateChange', async ({ isActive }: { isActive: boolean }) => {
+        appListener = await App.addListener('appStateChange', async ({ isActive }) => {
           if (!isActive && pathname !== "/login") {
-            // Destroy the session so they are required to re-authenticate
-            await fetch("/api/auth/logout", { method: "POST" });
-            
-            // Redirect to the PIN page instantly
-            router.push("/login");
+            // When app goes to background, instantly hide the UI by navigating to login
+            // (This prevents the app switcher from showing sensitive data)
+            router.replace("/login");
+          } 
+          else if (isActive && pathname !== "/login") {
+            // When app comes BACK to the foreground, the network is active again.
+            // Safely destroy the session so they are forced to enter the PIN.
+            await fetch("/api/auth/logout", { method: "POST" }).catch(() => {});
+            router.replace("/login");
           }
         });
       } catch (err) {
-        // Silently fail if not running in a Capacitor app environment (e.g. running in standard browser)
         console.warn("Capacitor App plugin not loaded.");
       }
     };
 
     initCapacitorAppLock();
 
-    // Cleanup listener on unmount
     return () => {
       if (appListener) {
         appListener.remove();

@@ -201,20 +201,6 @@ export default function SettingsPage() {
           </p>
         </div>
       </div>
-
-      {/* ── Logout ───────────────────────────────────────────── */}
-      <div className="settings-section">
-        <div className="settings-section-title">Account</div>
-        <div style={{ padding: "14px 16px" }}>
-          <button
-            className="btn btn-danger btn-full"
-            onClick={handleLogout}
-          >
-            Sign Out
-          </button>
-        </div>
-      </div>
-
       <div style={{ height: 16 }} />
     </AppShell>
   );
