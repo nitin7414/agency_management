@@ -421,42 +421,91 @@ export default function DashboardPage() {
         </>
       )}
 
-      {activeTab === "due" && (
-        <div className="card" style={{ padding: 0, overflow: "hidden" }}>
-          <div style={{ padding: "16px", borderBottom: "1px solid var(--navy-border)", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <h3 style={{ fontSize: 15, fontWeight: 700, color: "var(--navy)", margin: 0 }}>Due Payments Record</h3>
-            <button onClick={() => setActiveTab("customers")} style={{ fontSize: 12, fontWeight: 600, color: "var(--navy)" }}>
-              Back to Customers
-            </button>
-          </div>
-          <div className="customer-list">
-            {(data?.paymentHistory || []).length === 0 ? (
-              <div style={{ padding: 32, textAlign: "center", color: "var(--text-muted)", fontSize: 14 }}>
-                No recent payment transactions found.
-              </div>
-            ) : (
-              (data?.paymentHistory || []).map((t) => (
-                <div
-                  key={t.id}
-                  className="customer-list-item"
-                  onClick={() => router.push(`/customers/${t.customerId || ""}`)}
-                  style={{ cursor: "pointer" }}
-                >
-                  <div>
-                    <div className="customer-name">{t.customer.name}</div>
-                    <div className="customer-mobile">
-                      {format(new Date(t.createdAt), "dd MMM yyyy, hh:mm a")}
-                    </div>
-                  </div>
-                  <div className="pending-badge zero" style={{ fontWeight: 700 }}>
-                    ₹{(t.paymentAmount ?? 0).toFixed(0)}
-                  </div>
-                </div>
-              ))
-            )}
-          </div>
+{activeTab === "due" && (
+  <div className="card" style={{ padding: 0, overflow: "hidden" }}>
+    
+    <div
+      style={{
+        padding: "16px",
+        borderBottom: "1px solid var(--navy-border)",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center"
+      }}
+    >
+      <h3
+        style={{
+          fontSize: 15,
+          fontWeight: 700,
+          color: "var(--navy)",
+          margin: 0
+        }}
+      >
+        Customers With Due Payments
+      </h3>
+
+      <button
+        onClick={() => setActiveTab("customers")}
+        style={{
+          fontSize: 12,
+          fontWeight: 600,
+          color: "var(--navy)"
+        }}
+      >
+        Back to Customers
+      </button>
+    </div>
+
+    <div className="customer-list">
+      
+      {customers.filter((c) => c.pendingBalance > 0).length === 0 ? (
+        
+        <div
+          style={{
+            padding: 32,
+            textAlign: "center",
+            color: "var(--text-muted)",
+            fontSize: 14
+          }}
+        >
+          No customers with pending payments.
         </div>
+
+      ) : (
+        
+        customers
+          .filter((c) => c.pendingBalance > 0)
+          .map((c) => (
+            <div
+              key={c.id}
+              className="customer-list-item"
+              onClick={() => router.push(`/customers/${c.id}`)}
+              style={{ cursor: "pointer" }}
+            >
+              <div>
+                <div className="customer-name">
+                  {c.name}
+                </div>
+
+                <div className="customer-mobile">
+                  {c.mobile}
+                </div>
+              </div>
+
+              <div
+                className="pending-badge"
+                style={{
+                  fontWeight: 700
+                }}
+              >
+                ₹{c.pendingBalance.toFixed(0)}
+              </div>
+            </div>
+          ))
       )}
+    </div>
+  </div>
+)}
 
       {activeTab === "filled" && (
         <div className="card" style={{ padding: 0, overflow: "hidden" }}>

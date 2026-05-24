@@ -45,7 +45,7 @@
       "source_file": "F:\\projects\\shri_shyam\\android\\app\\src\\androidTest\\java\\com\\getcapacitor\\myapp\\ExampleInstrumentedTest.java",
       "source_location": "L1",
       "id": "f_projects_shri_shyam_android_app_src_androidtest_java_com_getcapacitor_myapp_exampleinstrumentedtest_java",
-      "community": 7,
+      "community": 8,
       "norm_label": "exampleinstrumentedtest.java"
     },
     {
@@ -54,7 +54,7 @@
       "source_file": "F:\\projects\\shri_shyam\\android\\app\\src\\androidTest\\java\\com\\getcapacitor\\myapp\\ExampleInstrumentedTest.java",
       "source_location": "L16",
       "id": "exampleinstrumentedtest_exampleinstrumentedtest",
-      "community": 7,
+      "community": 8,
       "norm_label": "exampleinstrumentedtest"
     },
     {
@@ -63,7 +63,7 @@
       "source_file": "F:\\projects\\shri_shyam\\android\\app\\src\\androidTest\\java\\com\\getcapacitor\\myapp\\ExampleInstrumentedTest.java",
       "source_location": "L19",
       "id": "exampleinstrumentedtest_exampleinstrumentedtest_useappcontext",
-      "community": 7,
+      "community": 8,
       "norm_label": ".useappcontext()"
     },
     {
@@ -90,7 +90,7 @@
       "source_file": "F:\\projects\\shri_shyam\\android\\app\\src\\main\\java\\com\\shrishyam\\gasagency\\MainActivity.java",
       "source_location": "L1",
       "id": "f_projects_shri_shyam_android_app_src_main_java_com_shrishyam_gasagency_mainactivity_java",
-      "community": 12,
+      "community": 13,
       "norm_label": "mainactivity.java"
     },
     {
@@ -99,7 +99,7 @@
       "source_file": "F:\\projects\\shri_shyam\\android\\app\\src\\main\\java\\com\\shrishyam\\gasagency\\MainActivity.java",
       "source_location": "L5",
       "id": "mainactivity_mainactivity",
-      "community": 12,
+      "community": 13,
       "norm_label": "mainactivity"
     },
     {
@@ -108,7 +108,7 @@
       "source_file": "F:\\projects\\shri_shyam\\android\\app\\src\\test\\java\\com\\getcapacitor\\myapp\\ExampleUnitTest.java",
       "source_location": "L1",
       "id": "f_projects_shri_shyam_android_app_src_test_java_com_getcapacitor_myapp_exampleunittest_java",
-      "community": 8,
+      "community": 9,
       "norm_label": "exampleunittest.java"
     },
     {
@@ -117,7 +117,7 @@
       "source_file": "F:\\projects\\shri_shyam\\android\\app\\src\\test\\java\\com\\getcapacitor\\myapp\\ExampleUnitTest.java",
       "source_location": "L12",
       "id": "exampleunittest_exampleunittest",
-      "community": 8,
+      "community": 9,
       "norm_label": "exampleunittest"
     },
     {
@@ -126,7 +126,7 @@
       "source_file": "F:\\projects\\shri_shyam\\android\\app\\src\\test\\java\\com\\getcapacitor\\myapp\\ExampleUnitTest.java",
       "source_location": "L14",
       "id": "exampleunittest_exampleunittest_addition_iscorrect",
-      "community": 8,
+      "community": 9,
       "norm_label": ".addition_iscorrect()"
     },
     {
@@ -135,7 +135,7 @@
       "source_file": "F:\\projects\\shri_shyam\\app\\layout.tsx",
       "source_location": "L1",
       "id": "f_projects_shri_shyam_app_layout_tsx",
-      "community": 13,
+      "community": 14,
       "norm_label": "layout.tsx"
     },
     {
@@ -144,7 +144,7 @@
       "source_file": "F:\\projects\\shri_shyam\\app\\layout.tsx",
       "source_location": "L25",
       "id": "layout_rootlayout",
-      "community": 13,
+      "community": 14,
       "norm_label": "rootlayout()"
     },
     {
@@ -153,7 +153,7 @@
       "source_file": "F:\\projects\\shri_shyam\\app\\page.tsx",
       "source_location": "L1",
       "id": "f_projects_shri_shyam_app_page_tsx",
-      "community": 4,
+      "community": 6,
       "norm_label": "page.tsx"
     },
     {
@@ -162,7 +162,7 @@
       "source_file": "F:\\projects\\shri_shyam\\app\\page.tsx",
       "source_location": "L4",
       "id": "page_rootpage",
-      "community": 4,
+      "community": 6,
       "norm_label": "rootpage()"
     },
     {
@@ -171,7 +171,7 @@
       "source_file": "F:\\projects\\shri_shyam\\app\\activity\\page.tsx",
       "source_location": "L1",
       "id": "f_projects_shri_shyam_app_activity_page_tsx",
-      "community": 9,
+      "community": 10,
       "norm_label": "page.tsx"
     },
     {
@@ -180,7 +180,7 @@
       "source_file": "F:\\projects\\shri_shyam\\app\\activity\\page.tsx",
       "source_location": "L34",
       "id": "page_dotclass",
-      "community": 9,
+      "community": 10,
       "norm_label": "dotclass()"
     },
     {
@@ -189,7 +189,7 @@
       "source_file": "F:\\projects\\shri_shyam\\app\\activity\\page.tsx",
       "source_location": "L56",
       "id": "page_handleexport",
-      "community": 9,
+      "community": 10,
       "norm_label": "handleexport()"
     },
     {
@@ -360,7 +360,7 @@
       "source_file": "F:\\projects\\shri_shyam\\app\\crop\\page.tsx",
       "source_location": "L1",
       "id": "f_projects_shri_shyam_app_crop_page_tsx",
-      "community": 14,
+      "community": 15,
       "norm_label": "page.tsx"
     },
     {
@@ -369,7 +369,7 @@
       "source_file": "F:\\projects\\shri_shyam\\app\\crop\\page.tsx",
       "source_location": "L131",
       "id": "page_savelogo",
-      "community": 14,
+      "community": 15,
       "norm_label": "savelogo()"
     },
     {
@@ -378,7 +378,7 @@
       "source_file": "F:\\projects\\shri_shyam\\app\\customers\\[id]\\page.tsx",
       "source_location": "L1",
       "id": "f_projects_shri_shyam_app_customers_id_page_tsx",
-      "community": 3,
+      "community": 4,
       "norm_label": "page.tsx"
     },
     {
@@ -387,7 +387,7 @@
       "source_file": "F:\\projects\\shri_shyam\\app\\customers\\[id]\\page.tsx",
       "source_location": "L56",
       "id": "page_handlepaymentchange",
-      "community": 3,
+      "community": 4,
       "norm_label": "handlepaymentchange()"
     },
     {
@@ -396,7 +396,7 @@
       "source_file": "F:\\projects\\shri_shyam\\app\\customers\\[id]\\page.tsx",
       "source_location": "L78",
       "id": "page_openeditmodal",
-      "community": 3,
+      "community": 4,
       "norm_label": "openeditmodal()"
     },
     {
@@ -405,7 +405,7 @@
       "source_file": "F:\\projects\\shri_shyam\\app\\customers\\[id]\\page.tsx",
       "source_location": "L112",
       "id": "page_handlenewtransaction",
-      "community": 3,
+      "community": 4,
       "norm_label": "handlenewtransaction()"
     },
     {
@@ -414,7 +414,7 @@
       "source_file": "F:\\projects\\shri_shyam\\app\\customers\\[id]\\page.tsx",
       "source_location": "L624",
       "id": "page_async",
-      "community": 3,
+      "community": 4,
       "norm_label": "async()"
     },
     {
@@ -423,16 +423,16 @@
       "source_file": "F:\\projects\\shri_shyam\\app\\dashboard\\page.tsx",
       "source_location": "L1",
       "id": "f_projects_shri_shyam_app_dashboard_page_tsx",
-      "community": 1,
+      "community": 3,
       "norm_label": "page.tsx"
     },
     {
       "label": "handleExportBackup()",
       "file_type": "code",
       "source_file": "F:\\projects\\shri_shyam\\app\\settings\\page.tsx",
-      "source_location": "L108",
+      "source_location": "L78",
       "id": "page_handleexportbackup",
-      "community": 1,
+      "community": 3,
       "norm_label": "handleexportbackup()"
     },
     {
@@ -441,17 +441,62 @@
       "source_file": "F:\\projects\\shri_shyam\\app\\login\\page.tsx",
       "source_location": "L1",
       "id": "f_projects_shri_shyam_app_login_page_tsx",
-      "community": 15,
+      "community": 1,
       "norm_label": "page.tsx"
     },
     {
-      "label": "handleLogin()",
+      "label": "FingerprintIcon()",
       "file_type": "code",
       "source_file": "F:\\projects\\shri_shyam\\app\\login\\page.tsx",
-      "source_location": "L13",
-      "id": "page_handlelogin",
-      "community": 15,
-      "norm_label": "handlelogin()"
+      "source_location": "L10",
+      "id": "page_fingerprinticon",
+      "community": 1,
+      "norm_label": "fingerprinticon()"
+    },
+    {
+      "label": "checkAndPromptBiometrics()",
+      "file_type": "code",
+      "source_file": "F:\\projects\\shri_shyam\\app\\login\\page.tsx",
+      "source_location": "L32",
+      "id": "page_checkandpromptbiometrics",
+      "community": 1,
+      "norm_label": "checkandpromptbiometrics()"
+    },
+    {
+      "label": "submitPin()",
+      "file_type": "code",
+      "source_file": "F:\\projects\\shri_shyam\\app\\login\\page.tsx",
+      "source_location": "L72",
+      "id": "page_submitpin",
+      "community": 1,
+      "norm_label": "submitpin()"
+    },
+    {
+      "label": "handleBiometricScan()",
+      "file_type": "code",
+      "source_file": "F:\\projects\\shri_shyam\\app\\login\\page.tsx",
+      "source_location": "L101",
+      "id": "page_handlebiometricscan",
+      "community": 1,
+      "norm_label": "handlebiometricscan()"
+    },
+    {
+      "label": "handleBackspace()",
+      "file_type": "code",
+      "source_file": "F:\\projects\\shri_shyam\\app\\login\\page.tsx",
+      "source_location": "L115",
+      "id": "page_handlebackspace",
+      "community": 1,
+      "norm_label": "handlebackspace()"
+    },
+    {
+      "label": "handlePress()",
+      "file_type": "code",
+      "source_file": "F:\\projects\\shri_shyam\\app\\login\\page.tsx",
+      "source_location": "L120",
+      "id": "page_handlepress",
+      "community": 1,
+      "norm_label": "handlepress()"
     },
     {
       "label": "page.tsx",
@@ -459,43 +504,34 @@
       "source_file": "F:\\projects\\shri_shyam\\app\\settings\\page.tsx",
       "source_location": "L1",
       "id": "f_projects_shri_shyam_app_settings_page_tsx",
-      "community": 1,
+      "community": 3,
       "norm_label": "page.tsx"
-    },
-    {
-      "label": "handleSaveProfile()",
-      "file_type": "code",
-      "source_file": "F:\\projects\\shri_shyam\\app\\settings\\page.tsx",
-      "source_location": "L58",
-      "id": "page_handlesaveprofile",
-      "community": 1,
-      "norm_label": "handlesaveprofile()"
     },
     {
       "label": "handleSaveStock()",
       "file_type": "code",
       "source_file": "F:\\projects\\shri_shyam\\app\\settings\\page.tsx",
-      "source_location": "L83",
+      "source_location": "L53",
       "id": "page_handlesavestock",
-      "community": 1,
+      "community": 3,
       "norm_label": "handlesavestock()"
     },
     {
       "label": "handleLogout()",
       "file_type": "code",
       "source_file": "F:\\projects\\shri_shyam\\app\\settings\\page.tsx",
-      "source_location": "L103",
+      "source_location": "L73",
       "id": "page_handlelogout",
-      "community": 1,
+      "community": 3,
       "norm_label": "handlelogout()"
     },
     {
       "label": "handleImportBackup()",
       "file_type": "code",
       "source_file": "F:\\projects\\shri_shyam\\app\\settings\\page.tsx",
-      "source_location": "L138",
+      "source_location": "L108",
       "id": "page_handleimportbackup",
-      "community": 1,
+      "community": 3,
       "norm_label": "handleimportbackup()"
     },
     {
@@ -504,7 +540,7 @@
       "source_file": "F:\\projects\\shri_shyam\\app\\tasks\\page.tsx",
       "source_location": "L1",
       "id": "f_projects_shri_shyam_app_tasks_page_tsx",
-      "community": 5,
+      "community": 7,
       "norm_label": "page.tsx"
     },
     {
@@ -513,7 +549,7 @@
       "source_file": "F:\\projects\\shri_shyam\\app\\tasks\\page.tsx",
       "source_location": "L30",
       "id": "page_handlesave",
-      "community": 5,
+      "community": 7,
       "norm_label": "handlesave()"
     },
     {
@@ -522,7 +558,7 @@
       "source_file": "F:\\projects\\shri_shyam\\app\\tasks\\page.tsx",
       "source_location": "L61",
       "id": "page_handledelete",
-      "community": 5,
+      "community": 7,
       "norm_label": "handledelete()"
     },
     {
@@ -531,7 +567,7 @@
       "source_file": "F:\\projects\\shri_shyam\\app\\tasks\\page.tsx",
       "source_location": "L68",
       "id": "page_openedit",
-      "community": 5,
+      "community": 7,
       "norm_label": "openedit()"
     },
     {
@@ -540,7 +576,7 @@
       "source_file": "F:\\projects\\shri_shyam\\components\\AddCustomerModal.tsx",
       "source_location": "L1",
       "id": "f_projects_shri_shyam_components_addcustomermodal_tsx",
-      "community": 10,
+      "community": 11,
       "norm_label": "addcustomermodal.tsx"
     },
     {
@@ -549,7 +585,7 @@
       "source_file": "F:\\projects\\shri_shyam\\components\\AddCustomerModal.tsx",
       "source_location": "L25",
       "id": "addcustomermodal_handlesubmit",
-      "community": 10,
+      "community": 11,
       "norm_label": "handlesubmit()"
     },
     {
@@ -558,7 +594,7 @@
       "source_file": "F:\\projects\\shri_shyam\\components\\AddCustomerModal.tsx",
       "source_location": "L203",
       "id": "addcustomermodal_renderuploadslot",
-      "community": 10,
+      "community": 11,
       "norm_label": "renderuploadslot()"
     },
     {
@@ -567,35 +603,44 @@
       "source_file": "F:\\projects\\shri_shyam\\components\\AppShell.tsx",
       "source_location": "L1",
       "id": "f_projects_shri_shyam_components_appshell_tsx",
-      "community": 6,
+      "community": 5,
       "norm_label": "appshell.tsx"
     },
     {
       "label": "HomeIcon()",
       "file_type": "code",
       "source_file": "F:\\projects\\shri_shyam\\components\\AppShell.tsx",
-      "source_location": "L9",
+      "source_location": "L10",
       "id": "appshell_homeicon",
-      "community": 6,
+      "community": 5,
       "norm_label": "homeicon()"
     },
     {
       "label": "TaskIcon()",
       "file_type": "code",
       "source_file": "F:\\projects\\shri_shyam\\components\\AppShell.tsx",
-      "source_location": "L18",
+      "source_location": "L19",
       "id": "appshell_taskicon",
-      "community": 6,
+      "community": 5,
       "norm_label": "taskicon()"
     },
     {
       "label": "ActivityIcon()",
       "file_type": "code",
       "source_file": "F:\\projects\\shri_shyam\\components\\AppShell.tsx",
-      "source_location": "L30",
+      "source_location": "L31",
       "id": "appshell_activityicon",
-      "community": 6,
+      "community": 5,
       "norm_label": "activityicon()"
+    },
+    {
+      "label": "initCapacitorAppLock()",
+      "file_type": "code",
+      "source_file": "F:\\projects\\shri_shyam\\components\\AppShell.tsx",
+      "source_location": "L142",
+      "id": "appshell_initcapacitorapplock",
+      "community": 5,
+      "norm_label": "initcapacitorapplock()"
     },
     {
       "label": "HistoryPopup.tsx",
@@ -612,7 +657,7 @@
       "source_file": "F:\\projects\\shri_shyam\\components\\ThemeProvider.tsx",
       "source_location": "L1",
       "id": "f_projects_shri_shyam_components_themeprovider_tsx",
-      "community": 11,
+      "community": 12,
       "norm_label": "themeprovider.tsx"
     },
     {
@@ -621,7 +666,7 @@
       "source_file": "F:\\projects\\shri_shyam\\components\\ThemeProvider.tsx",
       "source_location": "L15",
       "id": "themeprovider_themeprovider",
-      "community": 11,
+      "community": 12,
       "norm_label": "themeprovider()"
     },
     {
@@ -630,7 +675,7 @@
       "source_file": "F:\\projects\\shri_shyam\\components\\ThemeProvider.tsx",
       "source_location": "L39",
       "id": "themeprovider_usetheme",
-      "community": 11,
+      "community": 12,
       "norm_label": "usetheme()"
     },
     {
@@ -657,17 +702,26 @@
       "source_file": "F:\\projects\\shri_shyam\\lib\\session.ts",
       "source_location": "L1",
       "id": "f_projects_shri_shyam_lib_session_ts",
-      "community": 4,
+      "community": 6,
       "norm_label": "session.ts"
     },
     {
       "label": "getSession()",
       "file_type": "code",
       "source_file": "F:\\projects\\shri_shyam\\lib\\session.ts",
-      "source_location": "L20",
+      "source_location": "L18",
       "id": "session_getsession",
-      "community": 4,
+      "community": 6,
       "norm_label": "getsession()"
+    },
+    {
+      "label": "getValidSession()",
+      "file_type": "code",
+      "source_file": "F:\\projects\\shri_shyam\\lib\\session.ts",
+      "source_location": "L23",
+      "id": "session_getvalidsession",
+      "community": 6,
+      "norm_label": "getvalidsession()"
     },
     {
       "label": "uploadthing.ts",
@@ -691,7 +745,7 @@
       "label": "main()",
       "file_type": "code",
       "source_file": "F:\\projects\\shri_shyam\\prisma\\seed.ts",
-      "source_location": "L6",
+      "source_location": "L5",
       "id": "seed_main",
       "community": 16,
       "norm_label": "main()"
@@ -790,6 +844,18 @@
       "source_location": "L5",
       "weight": 1.0,
       "_src": "page_rootpage",
+      "_tgt": "session_getvalidsession",
+      "source": "page_rootpage",
+      "target": "session_getvalidsession"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "F:\\projects\\shri_shyam\\app\\page.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_src": "page_rootpage",
       "_tgt": "session_getsession",
       "source": "page_rootpage",
       "target": "session_getsession"
@@ -834,7 +900,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "F:\\projects\\shri_shyam\\app\\api\\backup\\route.ts",
-      "source_location": "L8",
+      "source_location": "L9",
       "weight": 1.0,
       "_src": "f_projects_shri_shyam_app_api_backup_route_ts",
       "_tgt": "route_get",
@@ -882,7 +948,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "F:\\projects\\shri_shyam\\app\\api\\settings\\route.ts",
-      "source_location": "L8",
+      "source_location": "L7",
       "weight": 1.0,
       "_src": "f_projects_shri_shyam_app_api_settings_route_ts",
       "_tgt": "route_get",
@@ -918,13 +984,13 @@
       "relation": "calls",
       "confidence": "INFERRED",
       "confidence_score": 0.8,
-      "source_file": "F:\\projects\\shri_shyam\\app\\api\\settings\\route.ts",
-      "source_location": "L8",
+      "source_file": "F:\\projects\\shri_shyam\\app\\api\\backup\\route.ts",
+      "source_location": "L11",
       "weight": 1.0,
       "_src": "route_get",
-      "_tgt": "session_getsession",
+      "_tgt": "session_getvalidsession",
       "source": "route_get",
-      "target": "session_getsession"
+      "target": "session_getvalidsession"
     },
     {
       "relation": "calls",
@@ -939,10 +1005,22 @@
       "target": "page_handleexportbackup"
     },
     {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "F:\\projects\\shri_shyam\\app\\api\\settings\\route.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_src": "route_get",
+      "_tgt": "session_getsession",
+      "source": "route_get",
+      "target": "session_getsession"
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "F:\\projects\\shri_shyam\\app\\api\\auth\\login\\route.ts",
-      "source_location": "L8",
+      "source_location": "L4",
       "weight": 1.0,
       "_src": "f_projects_shri_shyam_app_api_auth_login_route_ts",
       "_tgt": "route_post",
@@ -966,7 +1044,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "F:\\projects\\shri_shyam\\app\\api\\backup\\route.ts",
-      "source_location": "L64",
+      "source_location": "L66",
       "weight": 1.0,
       "_src": "f_projects_shri_shyam_app_api_backup_route_ts",
       "_tgt": "route_post",
@@ -1035,6 +1113,18 @@
       "target": "session_getsession"
     },
     {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "F:\\projects\\shri_shyam\\app\\api\\auth\\logout\\route.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_src": "route_post",
+      "_tgt": "session_getvalidsession",
+      "source": "route_post",
+      "target": "session_getvalidsession"
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "F:\\projects\\shri_shyam\\app\\api\\customers\\[id]\\route.ts",
@@ -1062,7 +1152,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "F:\\projects\\shri_shyam\\app\\api\\settings\\route.ts",
-      "source_location": "L24",
+      "source_location": "L27",
       "weight": 1.0,
       "_src": "f_projects_shri_shyam_app_api_settings_route_ts",
       "_tgt": "route_patch",
@@ -1093,6 +1183,18 @@
       "source": "route_patch",
       "target": "f_projects_shri_shyam_app_api_tasks_id_route_ts",
       "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "F:\\projects\\shri_shyam\\app\\api\\settings\\route.ts",
+      "source_location": "L29",
+      "weight": 1.0,
+      "_src": "route_patch",
+      "_tgt": "session_getvalidsession",
+      "source": "route_patch",
+      "target": "session_getvalidsession"
     },
     {
       "relation": "calls",
@@ -1194,7 +1296,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "F:\\projects\\shri_shyam\\app\\settings\\page.tsx",
-      "source_location": "L108",
+      "source_location": "L78",
       "weight": 1.0,
       "_src": "f_projects_shri_shyam_app_settings_page_tsx",
       "_tgt": "page_handleexportbackup",
@@ -1206,31 +1308,103 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "F:\\projects\\shri_shyam\\app\\login\\page.tsx",
-      "source_location": "L13",
+      "source_location": "L10",
       "weight": 1.0,
       "_src": "f_projects_shri_shyam_app_login_page_tsx",
-      "_tgt": "page_handlelogin",
+      "_tgt": "page_fingerprinticon",
       "source": "f_projects_shri_shyam_app_login_page_tsx",
-      "target": "page_handlelogin",
+      "target": "page_fingerprinticon",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "F:\\projects\\shri_shyam\\app\\settings\\page.tsx",
-      "source_location": "L58",
+      "source_file": "F:\\projects\\shri_shyam\\app\\login\\page.tsx",
+      "source_location": "L32",
       "weight": 1.0,
-      "_src": "f_projects_shri_shyam_app_settings_page_tsx",
-      "_tgt": "page_handlesaveprofile",
-      "source": "f_projects_shri_shyam_app_settings_page_tsx",
-      "target": "page_handlesaveprofile",
+      "_src": "f_projects_shri_shyam_app_login_page_tsx",
+      "_tgt": "page_checkandpromptbiometrics",
+      "source": "f_projects_shri_shyam_app_login_page_tsx",
+      "target": "page_checkandpromptbiometrics",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "F:\\projects\\shri_shyam\\app\\login\\page.tsx",
+      "source_location": "L72",
+      "weight": 1.0,
+      "_src": "f_projects_shri_shyam_app_login_page_tsx",
+      "_tgt": "page_submitpin",
+      "source": "f_projects_shri_shyam_app_login_page_tsx",
+      "target": "page_submitpin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "F:\\projects\\shri_shyam\\app\\login\\page.tsx",
+      "source_location": "L101",
+      "weight": 1.0,
+      "_src": "f_projects_shri_shyam_app_login_page_tsx",
+      "_tgt": "page_handlebiometricscan",
+      "source": "f_projects_shri_shyam_app_login_page_tsx",
+      "target": "page_handlebiometricscan",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "F:\\projects\\shri_shyam\\app\\login\\page.tsx",
+      "source_location": "L115",
+      "weight": 1.0,
+      "_src": "f_projects_shri_shyam_app_login_page_tsx",
+      "_tgt": "page_handlebackspace",
+      "source": "f_projects_shri_shyam_app_login_page_tsx",
+      "target": "page_handlebackspace",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "F:\\projects\\shri_shyam\\app\\login\\page.tsx",
+      "source_location": "L120",
+      "weight": 1.0,
+      "_src": "f_projects_shri_shyam_app_login_page_tsx",
+      "_tgt": "page_handlepress",
+      "source": "f_projects_shri_shyam_app_login_page_tsx",
+      "target": "page_handlepress",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "F:\\projects\\shri_shyam\\app\\login\\page.tsx",
+      "source_location": "L47",
+      "weight": 1.0,
+      "_src": "page_checkandpromptbiometrics",
+      "_tgt": "page_submitpin",
+      "source": "page_checkandpromptbiometrics",
+      "target": "page_submitpin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "F:\\projects\\shri_shyam\\app\\login\\page.tsx",
+      "source_location": "L108",
+      "weight": 1.0,
+      "_src": "page_handlebiometricscan",
+      "_tgt": "page_submitpin",
+      "source": "page_submitpin",
+      "target": "page_handlebiometricscan",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "F:\\projects\\shri_shyam\\app\\settings\\page.tsx",
-      "source_location": "L83",
+      "source_location": "L53",
       "weight": 1.0,
       "_src": "f_projects_shri_shyam_app_settings_page_tsx",
       "_tgt": "page_handlesavestock",
@@ -1242,7 +1416,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "F:\\projects\\shri_shyam\\app\\settings\\page.tsx",
-      "source_location": "L103",
+      "source_location": "L73",
       "weight": 1.0,
       "_src": "f_projects_shri_shyam_app_settings_page_tsx",
       "_tgt": "page_handlelogout",
@@ -1254,7 +1428,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "F:\\projects\\shri_shyam\\app\\settings\\page.tsx",
-      "source_location": "L138",
+      "source_location": "L108",
       "weight": 1.0,
       "_src": "f_projects_shri_shyam_app_settings_page_tsx",
       "_tgt": "page_handleimportbackup",
@@ -1326,7 +1500,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "F:\\projects\\shri_shyam\\components\\AppShell.tsx",
-      "source_location": "L9",
+      "source_location": "L10",
       "weight": 1.0,
       "_src": "f_projects_shri_shyam_components_appshell_tsx",
       "_tgt": "appshell_homeicon",
@@ -1338,7 +1512,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "F:\\projects\\shri_shyam\\components\\AppShell.tsx",
-      "source_location": "L18",
+      "source_location": "L19",
       "weight": 1.0,
       "_src": "f_projects_shri_shyam_components_appshell_tsx",
       "_tgt": "appshell_taskicon",
@@ -1350,12 +1524,24 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "F:\\projects\\shri_shyam\\components\\AppShell.tsx",
-      "source_location": "L30",
+      "source_location": "L31",
       "weight": 1.0,
       "_src": "f_projects_shri_shyam_components_appshell_tsx",
       "_tgt": "appshell_activityicon",
       "source": "f_projects_shri_shyam_components_appshell_tsx",
       "target": "appshell_activityicon",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "F:\\projects\\shri_shyam\\components\\AppShell.tsx",
+      "source_location": "L142",
+      "weight": 1.0,
+      "_src": "f_projects_shri_shyam_components_appshell_tsx",
+      "_tgt": "appshell_initcapacitorapplock",
+      "source": "f_projects_shri_shyam_components_appshell_tsx",
+      "target": "appshell_initcapacitorapplock",
       "confidence_score": 1.0
     },
     {
@@ -1386,7 +1572,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "F:\\projects\\shri_shyam\\lib\\session.ts",
-      "source_location": "L20",
+      "source_location": "L18",
       "weight": 1.0,
       "_src": "f_projects_shri_shyam_lib_session_ts",
       "_tgt": "session_getsession",
@@ -1397,8 +1583,32 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "F:\\projects\\shri_shyam\\lib\\session.ts",
+      "source_location": "L23",
+      "weight": 1.0,
+      "_src": "f_projects_shri_shyam_lib_session_ts",
+      "_tgt": "session_getvalidsession",
+      "source": "f_projects_shri_shyam_lib_session_ts",
+      "target": "session_getvalidsession",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "F:\\projects\\shri_shyam\\lib\\session.ts",
+      "source_location": "L24",
+      "weight": 1.0,
+      "_src": "session_getvalidsession",
+      "_tgt": "session_getsession",
+      "source": "session_getsession",
+      "target": "session_getvalidsession",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "F:\\projects\\shri_shyam\\prisma\\seed.ts",
-      "source_location": "L6",
+      "source_location": "L5",
       "weight": 1.0,
       "_src": "f_projects_shri_shyam_prisma_seed_ts",
       "_tgt": "seed_main",
