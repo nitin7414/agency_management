@@ -20,6 +20,11 @@ export default function SettingsPage() {
 
   const [profile, setProfile] = useState<AdminProfile | null>(null);
 
+  const [currentPin, setCurrentPin] = useState("");
+  const [newPin, setNewPin] = useState("");
+  const [confirmPin, setConfirmPin] = useState("");
+  const [pinSaving, setPinSaving] = useState(false);
+
   // Stock fields
   const [stockFilled, setStockFilled] = useState("");
   const [stockEmpty, setStockEmpty] = useState("");
@@ -69,6 +74,53 @@ export default function SettingsPage() {
       setStockSaving(false);
     }
   }
+  async function handleChangePin() {
+  if (!currentPin || !newPin || !confirmPin) {
+    toast.error("Please fill all fields");
+    return;
+  }
+
+  if (newPin !== confirmPin) {
+    toast.error("PINs do not match");
+    return;
+  }
+
+  if (newPin.length < 4) {
+    toast.error("PIN must be at least 4 digits");
+    return;
+  }
+
+  setPinSaving(true);
+
+  try {
+    const res = await fetch("/api/settings", {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        currentPin,
+        newPin,
+      }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      throw new Error(data.error);
+    }
+
+    toast.success("PIN updated successfully");
+
+    setCurrentPin("");
+    setNewPin("");
+    setConfirmPin("");
+  } catch (err: any) {
+    toast.error(err.message || "Could not update PIN");
+  } finally {
+    setPinSaving(false);
+  }
+}
 
   async function handleLogout() {
     await fetch("/api/auth/logout", { method: "POST" });
@@ -201,6 +253,129 @@ export default function SettingsPage() {
           </p>
         </div>
       </div>
+<div className="settings-section">
+  <div className="settings-section-title">
+    Security
+  </div>
+
+  <div
+    style={{
+      padding: "18px 16px",
+      display: "flex",
+      flexDirection: "column",
+      gap: 14,
+    }}
+  >
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: 10,
+        marginBottom: 4,
+      }}
+    >
+      <div
+        style={{
+          width: 38,
+          height: 38,
+          borderRadius: 10,
+          background: "rgba(59,130,246,0.12)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          fontSize: 18,
+        }}
+      >
+        🔐
+      </div>
+
+      <div>
+        <div
+          style={{
+            fontWeight: 600,
+            fontSize: 15,
+          }}
+        >
+          Update Security PIN
+        </div>
+
+        <div
+          style={{
+            fontSize: 12,
+            color: "var(--text-muted)",
+            marginTop: 2,
+          }}
+        >
+          Change your login PIN securely
+        </div>
+      </div>
+    </div>
+
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: 12,
+        marginTop: 6,
+      }}
+    >
+      <input
+        type="password"
+        placeholder="Current PIN"
+        value={currentPin}
+        onChange={(e) =>
+          setCurrentPin(e.target.value)
+        }
+        className="input"
+        style={{
+          height: 46,
+        }}
+      />
+
+      <input
+        type="password"
+        placeholder="New PIN"
+        value={newPin}
+        onChange={(e) =>
+          setNewPin(e.target.value)
+        }
+        className="input"
+        style={{
+          height: 46,
+        }}
+      />
+
+      <input
+        type="password"
+        placeholder="Confirm New PIN"
+        value={confirmPin}
+        onChange={(e) =>
+          setConfirmPin(e.target.value)
+        }
+        className="input"
+        style={{
+          height: 46,
+        }}
+      />
+
+      <button
+        className="btn btn-primary"
+        onClick={handleChangePin}
+        disabled={pinSaving}
+        style={{
+          marginTop: 6,
+          height: 46,
+          fontWeight: 600,
+          borderRadius: 12,
+        }}
+      >
+        {pinSaving
+          ? "Updating PIN..."
+          : "Update PIN"}
+      </button>
+    </div>
+  </div>
+</div>
       <div style={{ height: 16 }} />
     </AppShell>
   );

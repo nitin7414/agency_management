@@ -19,6 +19,7 @@ model Admin {
   darkMode     Boolean  @default(false)
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
+  adminPin     String @default("245773")
 }
 
 // ─────────────────────────────────────────

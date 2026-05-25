@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import bcrypt from "bcryptjs";
 import { getValidSession } from "@/lib/session";
 
 export const dynamic = "force-dynamic";
@@ -33,7 +34,14 @@ export async function PATCH(req: NextRequest) {
     }
 
     const body = await req.json();
-    const { logoUrl, darkMode } = body;
+    const {
+  logoUrl,
+  darkMode,
+  currentPin,
+  newPin,
+} = body;
+
+
 
     const updateData: Record<string, unknown> = {};
     if (logoUrl !== undefined) updateData.logoUrl = logoUrl;
@@ -44,7 +52,24 @@ export async function PATCH(req: NextRequest) {
     if (!adminRow) {
       return NextResponse.json({ error: "App configuration not found" }, { status: 404 });
     }
+    if (currentPin && newPin) {
+  const validPin = await bcrypt.compare(
+    currentPin,
+    adminRow.adminPin
+  );
 
+  if (!validPin) {
+    return NextResponse.json(
+      { error: "Current PIN is incorrect" },
+      { status: 400 }
+    );
+  }
+
+  updateData.adminPin = await bcrypt.hash(
+    newPin,
+    10
+  );
+}
     // Update the config
     const admin = await prisma.admin.update({
       where: { id: adminRow.id },

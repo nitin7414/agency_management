@@ -1,30 +1,57 @@
-import { NextResponse } from 'next/server';
-import { getSession } from '@/lib/session'; 
+import { NextResponse } from "next/server";
+import { getSession } from "@/lib/session";
+import { prisma } from "@/lib/prisma";
+import bcrypt from "bcryptjs";
 
 export async function POST(request: Request) {
   try {
     const { pin } = await request.json();
-    
-    // Grabs the PIN from your .env file, or defaults to 123456 if it can't find it
-    const correctPin = process.env.APP_SECURITY_PIN;
 
-    if (pin === correctPin) {
-      // Create a valid session
-      const session = await getSession();
-      session.isLoggedIn = true;
-      await session.save();
-      
-      return NextResponse.json({ success: true });
+    // Get admin row
+    const admin = await prisma.admin.findFirst();
+
+    if (!admin) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Admin configuration not found",
+        },
+        { status: 404 }
+      );
     }
 
-    // If the PIN doesn't match
-    return NextResponse.json(
-      { success: false, message: 'Invalid PIN' },
-      { status: 401 }
+    // Compare entered PIN with hashed DB PIN
+    const validPin = await bcrypt.compare(
+      pin,
+      admin.adminPin
     );
+
+    if (!validPin) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Invalid PIN",
+        },
+        { status: 401 }
+      );
+    }
+
+    // Create session
+    const session = await getSession();
+    session.isLoggedIn = true;
+    await session.save();
+
+    return NextResponse.json({
+      success: true,
+    });
   } catch (error) {
+    console.error(error);
+
     return NextResponse.json(
-      { success: false, message: 'Server error' },
+      {
+        success: false,
+        message: "Server error",
+      },
       { status: 500 }
     );
   }

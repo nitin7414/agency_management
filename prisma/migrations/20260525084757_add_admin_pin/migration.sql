@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Admin" ADD COLUMN     "adminPin" TEXT NOT NULL DEFAULT '245773';
